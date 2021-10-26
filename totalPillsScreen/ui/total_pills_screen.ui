@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>background_total_pills</class>
+ <widget class="QDialog" name="background_total_pills">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1020</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <weight>50</weight>
+    <bold>false</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#background_total_pills{
+background-color: #97C7F9}</string>
+  </property>
+  <widget class="QLabel" name="no_channel">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>30</y>
+     <width>191</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>JasmineUPC</family>
+     <pointsize>36</pointsize>
+     <weight>9</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C5E1FF;
+font: 75 36pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+</string>
+   </property>
+   <property name="text">
+    <string>ช่องที่ 1</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="text_question_inputting_total_pills">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>120</y>
+     <width>841</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 34pt &quot;JasmineUPC&quot;;</string>
+   </property>
+   <property name="text">
+    <string>กรุณาระบุจำนวนเม็ดยาทั้งหมดที่บรรจุ</string>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="lcdNumber">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>220</y>
+     <width>371</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #ffffff;</string>
+   </property>
+  </widget>
+  <widget class="QSlider" name="slider_total_pills">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>390</y>
+     <width>601</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QSlider{
+border-radius: 10px ;
+}
+
+QSlider::groove:horizontal{
+border: 10px ;
+height: 15px;
+background: #1C84A9;
+}
+
+QSlider::handle:horizontal{
+background: #1C84A9;
+border: 10px ;
+width: 25px;
+margin: -8px 0;
+border-radius: 10px;
+}
+QSlider::add-page:horizontal{
+background-color: white;
+border: 10px;
+}</string>
+   </property>
+   <property name="sliderPosition">
+    <number>0</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_save_total_pills">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>450</y>
+     <width>211</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 36pt &quot;JasmineUPC&quot;;
+background-color:#24BD73;
+color: #ffffff;
+border-radius:20px;</string>
+   </property>
+   <property name="text">
+    <string>บันทึก</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_skip_total_pills">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>450</y>
+     <width>211</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 36pt &quot;JasmineUPC&quot;;
+background-color:#DD5D5D;
+color: #ffffff;
+border-radius:20px;</string>
+   </property>
+   <property name="text">
+    <string>ข้าม</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
