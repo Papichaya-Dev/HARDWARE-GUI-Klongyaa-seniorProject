@@ -1,6 +1,6 @@
 import sys
-from gen.gen_total_pills_screen import *
-from gen.gen_amount_pill_per_time_screen import *
+from totalPillsNPillPerTimeScreen.gen.gen_total_pills_screen import *
+from totalPillsNPillPerTimeScreen.gen.gen_amount_pill_per_time_screen import *
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 
 class TotalPillsScreen(QDialog):
