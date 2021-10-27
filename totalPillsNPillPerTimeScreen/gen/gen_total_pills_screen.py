@@ -91,7 +91,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     background_total_pills = QtWidgets.QDialog()
-    ui = Ui_background_total_pills()
+    ui = Ui_total_pills()
     ui.setupUi(background_total_pills)
     background_total_pills.show()
     sys.exit(app.exec_())
