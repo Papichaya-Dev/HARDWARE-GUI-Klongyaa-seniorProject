@@ -8,4 +8,3 @@ pill_data = [
                 "times": ["08.00", "18.00"]
             }
             ]
-print(pill_data)
