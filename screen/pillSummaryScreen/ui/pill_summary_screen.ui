@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>947</width>
-    <height>601</height>
+    <width>1020</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,69 +44,6 @@ background-color: #97C7F9}</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="0" alignment="Qt::AlignHCenter">
-    <widget class="QToolButton" name="button_save_pill_summary">
-     <property name="minimumSize">
-      <size>
-       <width>100</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QToolButton#button_save_pill_summary {
-   	font: 75 36pt &quot;JasmineUPC&quot;;
-	background-color:#24BD73;
-	color: #ffffff;
-	border-radius:20px;
-	width: 170px;
-	height: 110px;
-}
-QToolButton#button_save_pill_summary:hover {
-	font: 75 36pt &quot;JasmineUPC&quot;;
-	background-color:#23B36D;
-	color: #ffffff;
-	border-radius:20px;
-	width: 170px;
-	height:110px;
-}</string>
-     </property>
-     <property name="text">
-      <string>บันทึก</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="no_channel">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>191</width>
-       <height>61</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: #C5E1FF;
-font: 75 36pt &quot;JasmineUPC&quot;;
-border-radius: 25px;
-color: #070021;
-</string>
-     </property>
-     <property name="text">
-      <string>ช่องที่ 1</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
-    </widget>
-   </item>
    <item row="5" column="0">
     <widget class="QScrollArea" name="scroll_area">
      <property name="minimumSize">
@@ -116,7 +53,7 @@ color: #070021;
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgb(143, 182, 255);
+      <string notr="true">background-color:rgb(156, 183, 255);
 border-color:rgb(156, 183, 255);
 
 </string>
@@ -129,59 +66,16 @@ border-color:rgb(156, 183, 255);
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>902</width>
-        <height>402</height>
+        <width>996</width>
+        <height>356</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="13" column="1">
-        <widget class="QLabel" name="show_time_2">
-         <property name="styleSheet">
-          <string notr="true">font: 75 34pt &quot;JasmineUPC&quot;;
-color: #070021;</string>
-         </property>
-         <property name="text">
-          <string>18.00</string>
-         </property>
-         <property name="margin">
-          <number>5</number>
-         </property>
-         <property name="openExternalLinks">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="0">
-        <widget class="QLabel" name="question_time_no2">
-         <property name="minimumSize">
-          <size>
-           <width>250</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>250</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color:none;
-font: 75 30pt &quot;JasmineUPC&quot;;
-border-radius: 25px;
-color: #070021;
-background-color:#C5E1FF;</string>
-         </property>
-         <property name="text">
-          <string>เวลาที่ 2</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
        <item row="5" column="1">
         <widget class="QLabel" name="show_total_pills">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="minimumSize">
           <size>
            <width>350</width>
@@ -194,7 +88,7 @@ color: #070021;
 margin-right:50px</string>
          </property>
          <property name="text">
-          <string>99 </string>
+          <string>99 เม็ด</string>
          </property>
         </widget>
        </item>
@@ -243,7 +137,7 @@ color: #070021;
 margin-right:50px</string>
          </property>
          <property name="text">
-          <string>10</string>
+          <string>10 เม็ด/มื้อ</string>
          </property>
         </widget>
        </item>
@@ -263,33 +157,6 @@ margin-right:50px</string>
   color: white;
 }
 QToolButton#button_edit_time {
-	font-size: 40px;
-  background-color: rgb(255, 50, 50);
-  border-radius: 35px;
-  color: white;
-}</string>
-         </property>
-         <property name="text">
-          <string>🖉</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="3">
-        <widget class="QToolButton" name="button_edit_total_pills">
-         <property name="minimumSize">
-          <size>
-           <width>70</width>
-           <height>70</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QToolButton#button_edit_total_pills {
-   font-size: 40px;
-  background-color: rgb(255, 74, 74);
-  border-radius: 35px;
-  color: white;
-}
-QToolButton#button_edit_total_pills:hover {
 	font-size: 40px;
   background-color: rgb(255, 50, 50);
   border-radius: 35px;
@@ -336,15 +203,15 @@ color: #070021;
 </string>
          </property>
          <property name="text">
-          <string>12.00</string>
+          <string>12.00 น.</string>
          </property>
          <property name="margin">
           <number>5</number>
          </property>
         </widget>
        </item>
-       <item row="8" column="3">
-        <widget class="QToolButton" name="button_edit_amount_pill">
+       <item row="5" column="3">
+        <widget class="QToolButton" name="button_edit_total_pills">
          <property name="minimumSize">
           <size>
            <width>70</width>
@@ -352,13 +219,13 @@ color: #070021;
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton#button_edit_amount_pill {
+          <string notr="true">QToolButton#button_edit_total_pills {
    font-size: 40px;
   background-color: rgb(255, 74, 74);
   border-radius: 35px;
   color: white;
 }
-QToolButton#button_edit_amount_pill {
+QToolButton#button_edit_total_pills:hover {
 	font-size: 40px;
   background-color: rgb(255, 50, 50);
   border-radius: 35px;
@@ -405,32 +272,30 @@ background-color: #C5E1FF;</string>
          </property>
         </widget>
        </item>
-       <item row="12" column="0">
-        <widget class="QLabel" name="question_time_no1">
+       <item row="8" column="3">
+        <widget class="QToolButton" name="button_edit_amount_pill">
          <property name="minimumSize">
           <size>
-           <width>250</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>250</width>
-           <height>16777215</height>
+           <width>70</width>
+           <height>70</height>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: none;
-font: 75 30pt &quot;JasmineUPC&quot;;
-border-radius: 25px;
-color: #070021;
-background-color: #C5E1FF;</string>
+          <string notr="true">QToolButton#button_edit_amount_pill {
+   font-size: 40px;
+  background-color: rgb(255, 74, 74);
+  border-radius: 35px;
+  color: white;
+}
+QToolButton#button_edit_amount_pill {
+	font-size: 40px;
+  background-color: rgb(255, 50, 50);
+  border-radius: 35px;
+  color: white;
+}</string>
          </property>
          <property name="text">
-          <string>เวลาที่ 1</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <string>🖉</string>
          </property>
         </widget>
        </item>
@@ -503,30 +368,32 @@ color: #070021;
          </property>
         </widget>
        </item>
-       <item row="13" column="3">
-        <widget class="QToolButton" name="mock_button_edit_time">
+       <item row="12" column="0">
+        <widget class="QLabel" name="question_time_no1">
          <property name="minimumSize">
           <size>
-           <width>70</width>
-           <height>70</height>
+           <width>250</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>16777215</height>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QToolButton#mock_button_edit_time {
-   font-size: 40px;
-  background-color: rgb(255, 74, 74);
-  border-radius: 35px;
-  color: white;
-}
-QToolButton#mock_button_edit_time {
-	font-size: 40px;
-  background-color: rgb(255, 50, 50);
-  border-radius: 35px;
-  color: white;
-}</string>
+          <string notr="true">background-color: none;
+font: 75 30pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+background-color: #C5E1FF;</string>
          </property>
          <property name="text">
-          <string>🖉</string>
+          <string>เวลาที่ 1</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -585,6 +452,69 @@ background-color: #C5E1FF;</string>
        </item>
       </layout>
      </widget>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="no_channel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>191</width>
+       <height>61</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #C5E1FF;
+font: 75 36pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+</string>
+     </property>
+     <property name="text">
+      <string>ช่องที่ 1</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="margin">
+      <number>0</number>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" alignment="Qt::AlignHCenter">
+    <widget class="QToolButton" name="button_save_pill_summary">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QToolButton#button_save_pill_summary {
+   	font: 75 36pt &quot;JasmineUPC&quot;;
+	background-color:#24BD73;
+	color: #ffffff;
+	border-radius:20px;
+	width: 170px;
+	height: 100px;
+}
+QToolButton#button_save_pill_summary:hover {
+	font: 75 36pt &quot;JasmineUPC&quot;;
+	background-color:#23B36D;
+	color: #ffffff;
+	border-radius:20px;
+	width: 170px;
+	height:100px;
+}</string>
+     </property>
+     <property name="text">
+      <string>บันทึก</string>
+     </property>
     </widget>
    </item>
   </layout>
