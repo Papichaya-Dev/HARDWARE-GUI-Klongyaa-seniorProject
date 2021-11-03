@@ -1,0 +1,10 @@
+generate py file from ui file :
+    pyuic5 -x [flie.ui input path] -o [file.py output path]
+
+check lib install :
+    pip list
+    pip freeze
+
+lib in this project
+    PyQt5
+    PyQt5designer
