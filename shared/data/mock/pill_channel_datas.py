@@ -1,6 +1,6 @@
-pill_channel_datas = [
-    {
-        "id": 0,
+pill_channel_datas = {
+    "0" : {
+        "id" : 0,
         "name": "พาราเซทตามอล",
         "totalPills": 30,
         "pillsPerTime": 2,
@@ -9,8 +9,14 @@ pill_channel_datas = [
             "18.00",
         ]
     },
-    {
-        "id": 3,
+    "1" : {
+
+    },
+    "2" : {
+
+    },
+    "3" : {
+        "id" : 3,
         "name": "Piroxycam",
         "totalPills": 50,
         "pillsPerTime": 1,
@@ -18,8 +24,14 @@ pill_channel_datas = [
             "09.00",
         ]
     },
-    {
-        "id": 6,
+    "4" : {
+
+    },
+    "5" : {
+
+    },
+    "6" : {
+        "id" : 6,
         "name": "ยาแก้แพ้",
         "totalPills": 10,
         "pillsPerTime": 1,
@@ -27,6 +39,5 @@ pill_channel_datas = [
             "06.00",
             "12.30",
         ]
-    },
-    
-]
+    }
+}

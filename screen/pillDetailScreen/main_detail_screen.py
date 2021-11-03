@@ -16,6 +16,8 @@ class DetailScreen(QtWidgets.QDialog):
     def __init__(self, pill_channel_data):
         super().__init__()
         self.pill_channel_data = pill_channel_data
+        print("detail : ")
+        print(pill_channel_data)
         self.setupUi(self)
 
     def setupUi(self, detailScreen):
@@ -64,7 +66,6 @@ class DetailScreen(QtWidgets.QDialog):
         self.gridLayout_2.addWidget(self.data_amount_pill, 2, 1, 1, 1)
 
         for time in self.pill_channel_data["timeToTake"] :
-            print(time)
             timeIndex = self.pill_channel_data["timeToTake"].index(time)
             timeToTakeLabelObjectName = "label_time_no_" + str(timeIndex)
             timeToTakeLabelNameText = "เวลาที่ " + str(timeIndex + 1)

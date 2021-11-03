@@ -6,12 +6,12 @@ import __main__
 class HomeScreen(QDialog):
     def __init__(self, pill_channel_datas):
         super().__init__()
-        self.pill_channel_data = pill_channel_datas
+        self.pill_channel_datas = pill_channel_datas
         self.setupUi(self)
     
     def setupUi(self, UIHomeScreen):
         pill_channel_buttons = []
-        pill_channel_datas = self.pill_channel_data
+        pill_channel_datas = self.pill_channel_datas
         width_height_of_channel = [
             [0, 0, 510, 200],
             [510, 0, 510, 200],
@@ -24,10 +24,19 @@ class HomeScreen(QDialog):
         UIHomeScreen.setObjectName("UIHomeScreen")
         UIHomeScreen.resize(1020, 600)
 
+        # for i in range(7) :
+        #     objectName = "pill_channel_button_" + str(i)
+        #     pill_channel_button = QtWidgets.QPushButton(
+        #         UIHomeScreen, 
+        #         clicked = lambda: gotoPillDetailScreen(pill_channel_datas[str(i)])
+        #     )
+        #     pill_channel_button.setObjectName(objectName)
+        #     pill_channel_buttons.append(pill_channel_button)
+
         self.pill_channel_btn_0 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
-                self, 0, pill_channel_datas
+                pill_channel_datas["0"]
                 )
             )   
         pill_channel_buttons.append(self.pill_channel_btn_0)
@@ -35,7 +44,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_1 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
-                self, 1, pill_channel_datas
+                pill_channel_datas["1"]
                 )
             )   
         pill_channel_buttons.append(self.pill_channel_btn_1)
@@ -43,7 +52,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_2 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
-                self, 2, pill_channel_datas
+                pill_channel_datas["2"]
                 )
             )   
         pill_channel_buttons.append(self.pill_channel_btn_2)
@@ -51,7 +60,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_3 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
-                self, 3, pill_channel_datas
+                pill_channel_datas["3"]
                 )
             )   
         pill_channel_buttons.append(self.pill_channel_btn_3)
@@ -59,7 +68,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_4 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
-                self, 4, pill_channel_datas
+                pill_channel_datas["4"]
                 )
             )   
         pill_channel_buttons.append(self.pill_channel_btn_4)
@@ -67,7 +76,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_5 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
-                self, 5, pill_channel_datas
+                pill_channel_datas["5"]
                 )
             )   
         pill_channel_buttons.append(self.pill_channel_btn_5)
@@ -75,7 +84,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_6 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
-                self, 6, pill_channel_datas
+                pill_channel_datas["6"]
                 )
             )   
         pill_channel_buttons.append(self.pill_channel_btn_6)
@@ -90,28 +99,26 @@ class HomeScreen(QDialog):
                 width_height_of_channel[channel_id][3]
                 )
             )
-            channel.setObjectName(f"pill_channel_btn_{channel_id}")
+            # channel.setObjectName(f"pill_channel_btn_{channel_id}")
 
             flag = 0
 
-            for data in pill_channel_datas :
-                # If have data in that slot
-                if channel_id == data["id"] :
-                    font = QtGui.QFont()
-                    font.setPointSize(18)
-                    channel.setFont(font)
+            # If have data in that slot
+            if len(self.pill_channel_datas[str(channel_id)]) != 0 :
+                font = QtGui.QFont()
+                font.setPointSize(18)
+                channel.setFont(font)
 
-                    channel_text = "ช่องที่ " + str(channel_id + 1) + " \n" + data["name"]
-                    channel.setText(channel_text)
-                    channel.setStyleSheet("background-color : #F8F37D")
-                    flag = 1
-                    break
+                channel_text = "ช่องที่ " + str(channel_id + 1) + " \n" + self.pill_channel_datas[str(channel_id)]["name"]
+                channel.setText(channel_text)
+                channel.setStyleSheet("background-color : #F8F37D")
+                flag = 1
+                continue
 
             # If don't have data in that slot
-            if flag == 0 :
-                channel.setStyleSheet("background-color : #97C7F9")
-                channel.setIcon(QtGui.QIcon('shared\images\plus_logo.png'))
-                channel.setIconSize(QtCore.QSize(40, 40))
+            channel.setStyleSheet("background-color : #97C7F9")
+            channel.setIcon(QtGui.QIcon('shared\images\plus_logo.png'))
+            channel.setIconSize(QtCore.QSize(40, 40))
 
         # self.page_2 = QtWidgets.QWidget()
         # self.page_2.setObjectName("page_2")
@@ -124,19 +131,15 @@ class HomeScreen(QDialog):
         _translate = QtCore.QCoreApplication.translate
         UIHomeScreen.setWindowTitle(_translate("UIHomeScreen", "Dialog"))
 
-def gotoPillDetailScreen(self, id, pill_channel_datas):
-    flag = 0
-    for data in pill_channel_datas :
-        if id == data["id"] :
-            propsPillData = data
-            flag = 1
-            break
-    if flag == 1 :
-        detailScreen = DetailScreen(propsPillData)
+def gotoPillDetailScreen(pill_channel_data):
+    print("\n\n")
+    print("homeee : ")
+    print(pill_channel_data)
+    if len(pill_channel_data) != 0 :
+        # Change screen to pill detail screen
+        detailScreen = DetailScreen(pill_channel_data)
         __main__.widget.addWidget(detailScreen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
-        print("test")
-        # self.stackedWidget.setCurrentWidget(self.pill_detail_screen)
     else :
         print("Add pill")
     
