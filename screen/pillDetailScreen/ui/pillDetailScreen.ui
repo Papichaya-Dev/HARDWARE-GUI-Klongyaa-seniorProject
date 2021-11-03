@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>detailScrenn</class>
+ <widget class="QDialog" name="detailScrenn">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1020</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1020</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #97C7F9</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="0">
+    <widget class="QLabel" name="text_header_detail_screen">
+     <property name="styleSheet">
+      <string notr="true">font: 75 34pt &quot;JasmineUPC&quot;;
+</string>
+     </property>
+     <property name="text">
+      <string>ข้อมูลของยาที่ต้องทาน</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <property name="indent">
+      <number>50</number>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>979</width>
+        <height>374</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(156, 183, 255);
+border-color:rgb(156, 183, 255);
+</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="1">
+        <widget class="QLabel" name="data_pill_name">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>379</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 32pt &quot;JasmineUPC&quot;;
+color: #070021;
+border: none;
+margin-right:50px</string>
+         </property>
+         <property name="text">
+          <string>เเสดงชื่อยา</string>
+         </property>
+         <property name="margin">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="data_amount_pill">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>50</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 34pt &quot;JasmineUPC&quot;;
+color: #070021;
+margin-right:50px</string>
+         </property>
+         <property name="text">
+          <string>10 เม็ด/มื้อ</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_time_no_0">
+         <property name="minimumSize">
+          <size>
+           <width>250</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: none;
+font: 75 30pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+background-color: #C5E1FF;</string>
+         </property>
+         <property name="text">
+          <string>เวลาที่ 2</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_time_no_1">
+         <property name="minimumSize">
+          <size>
+           <width>250</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: none;
+font: 75 30pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+background-color: #C5E1FF;</string>
+         </property>
+         <property name="text">
+          <string>เวลาที่ 1</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="data_time_0">
+         <property name="styleSheet">
+          <string notr="true">font: 75 34pt &quot;JasmineUPC&quot;;
+color: #070021;
+</string>
+         </property>
+         <property name="text">
+          <string>12.00 น.</string>
+         </property>
+         <property name="margin">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_amount_pill">
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>400</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: none;
+font: 75 30pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+background-color: #C5E1FF;</string>
+         </property>
+         <property name="text">
+          <string>จำนวนยาที่ต้องทาน</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_total_pills">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>15</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>20</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>360</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="sizeIncrement">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: none;
+font: 75 30pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+background-color: #C5E1FF;</string>
+         </property>
+         <property name="text">
+          <string>จำนวนยาทั้งหมด</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="data_time_1">
+         <property name="styleSheet">
+          <string notr="true">font: 75 34pt &quot;JasmineUPC&quot;;
+color: #070021;
+</string>
+         </property>
+         <property name="text">
+          <string>13.00 น.</string>
+         </property>
+         <property name="margin">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_pill_name">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>250</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>2</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="sizeIncrement">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>JasmineUPC</family>
+           <pointsize>30</pointsize>
+           <weight>9</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #C5E1FF;
+font: 75 30pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+
+</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="text">
+          <string>ชื่อยา</string>
+         </property>
+         <property name="scaledContents">
+          <bool>false</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="data_total_pills">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 34pt &quot;JasmineUPC&quot;;
+color: #070021;
+margin-right:50px</string>
+         </property>
+         <property name="text">
+          <string>99 เม็ด</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QToolButton" name="button_go_back">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolButton#button_go_back {
+   	font: 75 36pt &quot;JasmineUPC&quot;;
+	background-color:#24BD73;
+	color: #ffffff;
+	border-radius:20px;
+	width: 190px;
+	height: 70px;
+}
+QToolButton#button_go_back:hover {
+	font: 75 36pt &quot;JasmineUPC&quot;;
+	background-color:#23B36D;
+	color: #ffffff;
+	border-radius:20px;
+	width: 190px;
+	height: 70px;
+}</string>
+       </property>
+       <property name="text">
+        <string>ย้อนกลับ</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="button_delete_pill_channel">
+       <property name="styleSheet">
+        <string notr="true">QToolButton#button_delete_pill_channel {
+   	font: 75 36pt &quot;JasmineUPC&quot;;
+	background-color:#DD5D5D;
+	color: #ffffff;
+	border-radius:20px;
+	width: 190px;
+	height: 70px;
+}
+QToolButton#button_delete_pill_channel:hover {
+	font: 75 36pt &quot;JasmineUPC&quot;;
+	background-color:#F98A8A;
+	color: #ffffff;
+	border-radius:20px;
+	width: 190px;
+	height: 70px;
+}</string>
+       </property>
+       <property name="text">
+        <string>ลบ</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QFrame" name="frame">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>80</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QToolButton" name="button_edit_pill_data">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>0</y>
+        <width>70</width>
+        <height>70</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>70</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QToolButton#button_edit_pill_data  {
+   font-size: 40px;
+  background-color: rgb(255, 74, 74);
+  border-radius: 35px;
+  color: white;
+}
+QToolButton#button_edit_pill_data :hover {
+ font-size: 40px;
+  background-color: rgb(255, 50, 50);
+  border-radius:35px;
+  color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>🖉</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="no_channel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>191</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>191</width>
+        <height>61</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #C5E1FF;
+font: 75 36pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+</string>
+      </property>
+      <property name="text">
+       <string>ช่องที่ 1</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="margin">
+       <number>0</number>
+      </property>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

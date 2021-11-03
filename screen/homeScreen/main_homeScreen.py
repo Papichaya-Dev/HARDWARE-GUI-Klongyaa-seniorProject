@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog
-from main import widget
-
+from screen.pillDetailScreen.main_detail_screen import DetailScreen
+import __main__
 
 class HomeScreen(QDialog):
     def __init__(self, pill_channel_datas):
@@ -128,9 +128,13 @@ def gotoPillDetailScreen(self, id, pill_channel_datas):
     flag = 0
     for data in pill_channel_datas :
         if id == data["id"] :
+            propsPillData = data
             flag = 1
             break
     if flag == 1 :
+        detailScreen = DetailScreen(propsPillData)
+        __main__.widget.addWidget(detailScreen)
+        __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
         print("test")
         # self.stackedWidget.setCurrentWidget(self.pill_detail_screen)
     else :
