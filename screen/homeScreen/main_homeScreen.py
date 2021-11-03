@@ -24,15 +24,6 @@ class HomeScreen(QDialog):
         UIHomeScreen.setObjectName("UIHomeScreen")
         UIHomeScreen.resize(1020, 600)
 
-        # for i in range(7) :
-        #     objectName = "pill_channel_button_" + str(i)
-        #     pill_channel_button = QtWidgets.QPushButton(
-        #         UIHomeScreen, 
-        #         clicked = lambda: gotoPillDetailScreen(pill_channel_datas[str(i)])
-        #     )
-        #     pill_channel_button.setObjectName(objectName)
-        #     pill_channel_buttons.append(pill_channel_button)
-
         self.pill_channel_btn_0 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
@@ -99,9 +90,6 @@ class HomeScreen(QDialog):
                 width_height_of_channel[channel_id][3]
                 )
             )
-            # channel.setObjectName(f"pill_channel_btn_{channel_id}")
-
-            flag = 0
 
             # If have data in that slot
             if len(self.pill_channel_datas[str(channel_id)]) != 0 :
@@ -120,10 +108,6 @@ class HomeScreen(QDialog):
             channel.setIcon(QtGui.QIcon('shared\images\plus_logo.png'))
             channel.setIconSize(QtCore.QSize(40, 40))
 
-        # self.page_2 = QtWidgets.QWidget()
-        # self.page_2.setObjectName("page_2")
-        # self.stackedWidget.addWidget(self.page_2)
-
         self.retranslateUi(UIHomeScreen)
         QtCore.QMetaObject.connectSlotsByName(UIHomeScreen)
 
@@ -132,9 +116,6 @@ class HomeScreen(QDialog):
         UIHomeScreen.setWindowTitle(_translate("UIHomeScreen", "Dialog"))
 
 def gotoPillDetailScreen(pill_channel_data):
-    print("\n\n")
-    print("homeee : ")
-    print(pill_channel_data)
     if len(pill_channel_data) != 0 :
         # Change screen to pill detail screen
         detailScreen = DetailScreen(pill_channel_data)
