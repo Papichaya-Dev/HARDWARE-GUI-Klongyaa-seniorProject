@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_amount_pill_per_time(object):
     def setupUi(self, background_amount_pill_per_time):
         background_amount_pill_per_time.setObjectName("background_amount_pill_per_time")
-        background_amount_pill_per_time.resize(1020, 600)
+        background_amount_pill_per_time.resize(1024, 600)
         background_amount_pill_per_time.setStyleSheet("QWidget#background_amount_pill_per_time{\n"
 "background-color: #97C7F9}")
         self.no_channel = QtWidgets.QLabel(background_amount_pill_per_time)

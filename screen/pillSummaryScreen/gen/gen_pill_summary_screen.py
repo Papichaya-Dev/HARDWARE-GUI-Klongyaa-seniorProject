@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_pill_summary_screen(object):
     def setupUi(self, background_summary_screen):
         background_summary_screen.setObjectName("background_summary_screen")
-        background_summary_screen.resize(1020, 600)
+        background_summary_screen.resize(1024, 600)
         background_summary_screen.setStyleSheet("QWidget#background_summary_screen{\n"
 "background-color: #97C7F9}")
         self.gridLayout = QtWidgets.QGridLayout(background_summary_screen)

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>background_input_pil_name</class>
+ <widget class="QDialog" name="background_input_pil_name">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1020</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#background_input_pil_name{
+background-color: #97C7F9}</string>
+  </property>
+  <widget class="QLabel" name="no_channel">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>30</y>
+     <width>191</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>JasmineUPC</family>
+     <pointsize>36</pointsize>
+     <weight>9</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C5E1FF;
+font: 75 36pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+</string>
+   </property>
+   <property name="text">
+    <string>ช่องที่ 1</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="question_input_pill_name_1">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>150</y>
+     <width>311</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 34pt &quot;JasmineUPC&quot;;</string>
+   </property>
+   <property name="text">
+    <string>ดำเนินการกดปุ่ม</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="question_input_pill_name_2">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>230</y>
+     <width>381</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 38pt &quot;JasmineUPC&quot;;</string>
+   </property>
+   <property name="text">
+    <string>เพื่อพูดชื่อยาของท่าน</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_input_pill_name">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>350</y>
+     <width>141</width>
+     <height>125</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton#button_input_pill_name {
+   background-image: url(:/newPrefix/mic_icon.png); 
+   border-radius: 35;
+   width:30px;
+}
+QToolButton#button_input_pill_name:hover {
+	background-color:#24BD73;
+	background-image: url(:/newPrefix/mic_icon.png);
+   border-radius: 35;
+   background-color:#B9D974;
+	width: 170px;
+	height: 100px;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../microphone_icon.qrc"/>
+ </resources>
+ <connections/>
+</ui>

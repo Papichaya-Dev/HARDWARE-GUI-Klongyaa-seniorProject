@@ -1,8 +1,10 @@
 import sys
 from gen.gen_total_pills_screen import *
 from gen.gen_amount_pill_per_time_screen import *
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QLabel
 from shared.gen_mock_screen import *
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtGui import QMovie
 
 class TotalPillsScreen(QDialog):
     def __init__(self):

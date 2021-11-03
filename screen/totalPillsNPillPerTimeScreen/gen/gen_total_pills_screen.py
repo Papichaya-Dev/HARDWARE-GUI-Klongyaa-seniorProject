@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_total_pills(object):
     def setupUi(self, background_total_pills):
         background_total_pills.setObjectName("background_total_pills")
-        background_total_pills.resize(1020, 600)
+        background_total_pills.resize(1024, 600)
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
