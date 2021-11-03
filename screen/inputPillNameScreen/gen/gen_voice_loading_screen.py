@@ -15,7 +15,7 @@ class Ui_voice_loading(object):
         self.frame_of_loading.setObjectName("frame_of_loading")
         self.label_voice_gif = QtWidgets.QLabel(self.frame_of_loading)
         self.label_voice_gif.setGeometry(QtCore.QRect(170, 100, 601, 231))
-        self.label_voice_gif.setStyleSheet("background-color: rgb(255, 255, 127);\n"
+        self.label_voice_gif.setStyleSheet("background-color: #ffffff;\n"
 "font: 75 36pt \"JasmineUPC\";")
         self.label_voice_gif.setAlignment(QtCore.Qt.AlignCenter)
         self.label_voice_gif.setObjectName("label_voice_gif")
