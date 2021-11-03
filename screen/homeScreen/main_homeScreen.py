@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog
+from main import widget
 
 
 class HomeScreen(QDialog):
@@ -23,17 +24,8 @@ class HomeScreen(QDialog):
         UIHomeScreen.setObjectName("UIHomeScreen")
         UIHomeScreen.resize(1020, 600)
 
-        self.gridLayout = QtWidgets.QGridLayout(UIHomeScreen)
-        self.gridLayout.setObjectName("gridLayout")
-
-        self.stackedWidget = QtWidgets.QStackedWidget(UIHomeScreen)
-        self.stackedWidget.setObjectName("stackedWidget")
-
-        self.homescreen = QtWidgets.QWidget()
-        self.homescreen.setObjectName("homescreen")
-
         self.pill_channel_btn_0 = QtWidgets.QPushButton(
-            self.homescreen, 
+            UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
                 self, 0, pill_channel_datas
                 )
@@ -41,7 +33,7 @@ class HomeScreen(QDialog):
         pill_channel_buttons.append(self.pill_channel_btn_0)
         
         self.pill_channel_btn_1 = QtWidgets.QPushButton(
-            self.homescreen, 
+            UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
                 self, 1, pill_channel_datas
                 )
@@ -49,7 +41,7 @@ class HomeScreen(QDialog):
         pill_channel_buttons.append(self.pill_channel_btn_1)
         
         self.pill_channel_btn_2 = QtWidgets.QPushButton(
-            self.homescreen, 
+            UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
                 self, 2, pill_channel_datas
                 )
@@ -57,7 +49,7 @@ class HomeScreen(QDialog):
         pill_channel_buttons.append(self.pill_channel_btn_2)
         
         self.pill_channel_btn_3 = QtWidgets.QPushButton(
-            self.homescreen, 
+            UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
                 self, 3, pill_channel_datas
                 )
@@ -65,7 +57,7 @@ class HomeScreen(QDialog):
         pill_channel_buttons.append(self.pill_channel_btn_3)
         
         self.pill_channel_btn_4 = QtWidgets.QPushButton(
-            self.homescreen, 
+            UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
                 self, 4, pill_channel_datas
                 )
@@ -73,7 +65,7 @@ class HomeScreen(QDialog):
         pill_channel_buttons.append(self.pill_channel_btn_4)
         
         self.pill_channel_btn_5 = QtWidgets.QPushButton(
-            self.homescreen, 
+            UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
                 self, 5, pill_channel_datas
                 )
@@ -81,7 +73,7 @@ class HomeScreen(QDialog):
         pill_channel_buttons.append(self.pill_channel_btn_5)
         
         self.pill_channel_btn_6 = QtWidgets.QPushButton(
-            self.homescreen, 
+            UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
                 self, 6, pill_channel_datas
                 )
@@ -121,13 +113,9 @@ class HomeScreen(QDialog):
                 channel.setIcon(QtGui.QIcon('shared\images\plus_logo.png'))
                 channel.setIconSize(QtCore.QSize(40, 40))
 
-        self.stackedWidget.addWidget(self.homescreen)
-
         # self.page_2 = QtWidgets.QWidget()
         # self.page_2.setObjectName("page_2")
         # self.stackedWidget.addWidget(self.page_2)
-
-        self.gridLayout.addWidget(self.stackedWidget, 0, 0, 1, 1)
 
         self.retranslateUi(UIHomeScreen)
         QtCore.QMetaObject.connectSlotsByName(UIHomeScreen)
@@ -137,8 +125,6 @@ class HomeScreen(QDialog):
         UIHomeScreen.setWindowTitle(_translate("UIHomeScreen", "Dialog"))
 
 def gotoPillDetailScreen(self, id, pill_channel_datas):
-    print('homepage :')
-    
     flag = 0
     for data in pill_channel_datas :
         if id == data["id"] :
