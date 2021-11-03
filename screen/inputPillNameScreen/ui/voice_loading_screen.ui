@@ -46,7 +46,7 @@ border-radius:40px</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 127);
+     <string notr="true">background-color:#ffffff;
 font: 75 36pt &quot;JasmineUPC&quot;;</string>
     </property>
     <property name="text">

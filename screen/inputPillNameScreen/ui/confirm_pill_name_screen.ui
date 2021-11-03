@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>background_confirm_pill_name</class>
+ <widget class="QDialog" name="background_confirm_pill_name">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#background_confirm_pill_name{
+background-color: #97C7F9}</string>
+  </property>
+  <widget class="QLabel" name="no_channel">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>30</y>
+     <width>191</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>JasmineUPC</family>
+     <pointsize>36</pointsize>
+     <weight>9</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C5E1FF;
+font: 75 36pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+</string>
+   </property>
+   <property name="text">
+    <string>ช่องที่ 1</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_1">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>130</y>
+     <width>171</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font:42pt &quot;JasmineUPC&quot;;</string>
+   </property>
+   <property name="text">
+    <string>ชื่อยา</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="show_pill_name">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>230</y>
+     <width>561</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 52pt &quot;JasmineUPC&quot;;</string>
+   </property>
+   <property name="text">
+    <string>ยาพาราแซลมอน</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_correct_pill_name">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>410</y>
+     <width>251</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+
+QToolButton#button_correct_pill_name {
+   	font: 75 36pt &quot;JasmineUPC&quot;;
+   background-color:#24BD73;
+   color: #ffffff;
+   border-radius:20px;
+}
+QToolButton#button_correct_pill_name:hover {
+	font: 75 36pt &quot;JasmineUPC&quot;;
+	background-color:#23B36D;
+	color: #ffffff;
+	border-radius:20px;
+	width: 170px;
+	height:100px;
+}</string>
+   </property>
+   <property name="text">
+    <string>ถูกต้อง</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_incorrect_pill_name">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>410</y>
+     <width>251</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton#button_incorrect_pill_name {
+   	font: 75 36pt &quot;JasmineUPC&quot;;
+    background-color: #DD5D5D;
+      border-radius:20px;
+    color: white;
+}
+QToolButton#button_incorrect_pill_name:hover {
+   	font: 75 36pt &quot;JasmineUPC&quot;;
+    background-color: rgb(255, 50, 50);
+      border-radius:20px;
+    color: white;
+}</string>
+   </property>
+   <property name="text">
+    <string>ไม่ถูกต้อง</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
