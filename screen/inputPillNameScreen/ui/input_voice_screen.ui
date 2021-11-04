@@ -49,45 +49,27 @@ color: #070021;
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="question_input_pill_name_1">
+  <widget class="QLabel" name="question_input_voice">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>230</x>
      <y>150</y>
-     <width>311</width>
-     <height>81</height>
+     <width>541</width>
+     <height>201</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">font: 34pt &quot;JasmineUPC&quot;;</string>
    </property>
    <property name="text">
-    <string>ดำเนินการกดปุ่ม</string>
+    <string>ดำเนินการกดปุ่ม 
+ เพื่อพูดชื่อยาของท่าน</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="question_input_pill_name_2">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>230</y>
-     <width>381</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 38pt &quot;JasmineUPC&quot;;</string>
-   </property>
-   <property name="text">
-    <string>เพื่อพูดชื่อยาของท่าน</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QToolButton" name="button_input_pill_name">
+  <widget class="QToolButton" name="button_input_voice">
    <property name="geometry">
     <rect>
      <x>430</x>
@@ -97,12 +79,12 @@ color: #070021;
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QToolButton#button_input_pill_name {
+    <string notr="true">QToolButton#button_input_voice {
    background-image: url(:/newPrefix/mic_icon.png); 
    border-radius: 35;
    width:30px;
 }
-QToolButton#button_input_pill_name:hover {
+QToolButton#button_input_voice:hover {
 	background-color:#24BD73;
 	background-image: url(:/newPrefix/mic_icon.png);
    border-radius: 35;
@@ -117,7 +99,7 @@ QToolButton#button_input_pill_name:hover {
   </widget>
  </widget>
  <resources>
-  <include location="../microphone_icon.qrc"/>
+  <include location="../../../../../Pictures/GUI-KLONG-YAA/mic_icon.qrc"/>
  </resources>
  <connections/>
 </ui>

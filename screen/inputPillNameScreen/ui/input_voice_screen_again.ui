@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>bankground_input_voice_again</class>
+ <widget class="QDialog" name="bankground_input_voice_again">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#bankground_input_pill_name_again{
+background-color: #97C7F9}</string>
+  </property>
+  <widget class="QFrame" name="frame_of_input_voice_again">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>40</y>
+     <width>941</width>
+     <height>521</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:40px</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="question_of_input_voice_again">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>170</y>
+      <width>651</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 34pt &quot;JasmineUPC&quot;;</string>
+    </property>
+    <property name="text">
+     <string>กรุณาพูดชื่อยาอีกครั้ง</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="button_input_voice_again">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>280</y>
+      <width>141</width>
+      <height>125</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton#button_input_voice_again {
+   background-image: url(:/newPrefix/mic_icon.png); 
+   border-radius: 35;
+   width:30px;
+}
+QToolButton#button_input_voice_again:hover {
+	background-color:#24BD73;
+	background-image: url(:/newPrefix/mic_icon.png);
+   border-radius: 35;
+   background-color:#B9D974;
+	width: 170px;
+	height: 100px;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../mic_icon_again.qrc"/>
+ </resources>
+ <connections/>
+</ui>
