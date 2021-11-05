@@ -258,11 +258,9 @@ class PillSummaryScreen(QDialog):
         if edit_mode == "pill_name" :
             screen = InputPillNameScreen(globalPillData)
         if edit_mode == "total_pills" :
-            screen = TotalPillsScreen(globalPillData)
+            screen = TotalPillsScreen()
         if edit_mode == "amount_pill" :
-            print("amount_pill")
-            # print("จำนวนเม็ดยาที่ต้องทาน :", pill_data[0]["amount_pill"] )
-            # widget.setCurrentIndex(widget.currentIndex()+1)
+            screen = AmountPillPerTimeScreen()
         if edit_mode == "time" :
             print("time")
             # print("เวลาทานยา :", pill_data[0]["times"][0] )
@@ -516,10 +514,8 @@ class InputVoiceAgain(QDialog):
 
 # ########### INPUT TOTAL PILL FLOW CLASS ############
 class TotalPillsScreen(QDialog):
-    def __init__(self, pillData):
+    def __init__(self):
         super().__init__()
-        global globalPillData
-        globalPillData = pillData
         self.setupUi(self)
         #======================= set max-min of total pills =======================#
         self.slider_total_pills.setMaximum(30)
@@ -606,7 +602,7 @@ class AmountPillPerTimeScreen(QDialog):
         self.slider_amount_pill_per_time.setMaximum(10)
         self.slider_amount_pill_per_time.setMinimum(0)
         self.slider_amount_pill_per_time.valueChanged.connect(self.updateSliderPillPerTime)
-        self.button_next.clicked.connect(self.gotoInputTimesToTakePill)
+        self.button_next.clicked.connect(self.savePillsPerTimeData)
           
     def setupUi(self, background_amount_pill_per_time):
         background_amount_pill_per_time.setObjectName("background_amount_pill_per_time")
@@ -664,11 +660,8 @@ class AmountPillPerTimeScreen(QDialog):
         self.amount_pill =  amount_of_pill_per_time
         #======================= add amount pill per time data to array object =======================#
 
-    def gotoInputTimesToTakePill(self):
-
+    def savePillsPerTimeData(self):
         if hasattr(self, 'amount_pill') :
-            print("ไปหน้าเพิ่มเวลาทานยา")
-
             global globalPillData
             globalPillData["pillsPerTime"] = self.amount_pill
             print(globalPillData)
