@@ -54,8 +54,12 @@ class InputTimeToTakePillScreen(QDialog):
 
     def retranslateUi(self, background_input_times_to_take_pill):
         _translate = QtCore.QCoreApplication.translate
+
+        global globalPillData
+        channelID = "ช่องที่ " + str(globalPillData["id"] + 1)
+
         background_input_times_to_take_pill.setWindowTitle(_translate("background_input_times_to_take_pill", "Dialog"))
-        self.no_channel.setText(_translate("background_input_times_to_take_pill", "ช่องที่ 1"))
+        self.no_channel.setText(_translate("background_input_times_to_take_pill", channelID))
         self.question_input_times_to_take_pill.setText(_translate("background_input_times_to_take_pill", "ดำเนินการกดปุ่ม \n"" เพื่อพูดเวลาทานยาพาราเซตามอล"))
 
     import screen.inputPillNameScreen.gen.mic_icon
@@ -216,8 +220,12 @@ class AddSummaryTimeScreen(QDialog):
 
     def retranslateUi(self, background_confirm_times_to_take_pill):
         _translate = QtCore.QCoreApplication.translate
+
+        global globalPillData
+        channelID = "ช่องที่ " + str(globalPillData["id"] + 1)
+
         background_confirm_times_to_take_pill.setWindowTitle(_translate("background_confirm_times_to_take_pill", "Dialog"))
-        self.no_channel.setText(_translate("background_confirm_times_to_take_pill", "ช่องที่ 1"))
+        self.no_channel.setText(_translate("background_confirm_times_to_take_pill", channelID))
         self.header_text.setText(_translate("background_confirm_times_to_take_pill", "เวลาที่ต้องทานยา"))
         self.success_button.setText(_translate("background_confirm_times_to_take_pill", "เสร็จสิ้น"))
 

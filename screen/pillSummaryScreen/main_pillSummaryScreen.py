@@ -21,7 +21,7 @@ class PillSummaryScreen(QDialog):
         #----------- SET VARIABLE OF TEXT LABEL ------------#
         unit_pill = " เม็ด"
         unit_time = " น."
-        
+
         #----------- SET EDIT BUTTON TO CONNECT EACH PAGE -----------#
         self.button_edit_pill_name.clicked.connect(lambda:self.editPillName("pill_name"))
         self.button_edit_amount_pill.clicked.connect(lambda:self.editPillName("amount_pill"))
@@ -220,6 +220,8 @@ class PillSummaryScreen(QDialog):
         global globalPillData
         pillName = globalPillData["name"]
         pillsPerTime = str(globalPillData["pillsPerTime"]) + " เม็ด/มื้อ"
+        channelID = "ช่องที่ " + str(globalPillData["id"] + 1)
+
         
         background_summary_screen.setWindowTitle(_translate("background_summary_screen", "Dialog"))
         self.text_header_summary_screen.setText(_translate("background_summary_screen", "ข้อมูลของยาที่ต้องทาน"))
@@ -233,7 +235,7 @@ class PillSummaryScreen(QDialog):
         self.question_pill_name.setText(_translate("background_summary_screen", "ชื่อยา"))
         
         self.button_save_pill_summary.setText(_translate("background_summary_screen", "บันทึก"))
-        self.no_channel.setText(_translate("background_summary_screen", "ช่องที่ 1"))
+        self.no_channel.setText(_translate("background_summary_screen", channelID))
 
     # def savePillSummary(self,edit_mode): * อย่าเพิ่งลบคอมเม้นท์
     def savePillSummary(self):

@@ -75,8 +75,11 @@ class InputPillNameScreen(QDialog):
 
     def retranslateUi(self, background_input_pil_name):
         _translate = QtCore.QCoreApplication.translate
+
+        global globalPillData
+        channelID = "ช่องที่ " + str(globalPillData["id"] + 1)
         background_input_pil_name.setWindowTitle(_translate("background_input_pil_name", "Dialog"))
-        self.no_channel.setText(_translate("background_input_pil_name", "ช่องที่ 1"))
+        self.no_channel.setText(_translate("background_input_pil_name", channelID))
         self.question_input_voice.setText(_translate("background_input_pil_name", "ดำเนินการกดปุ่ม \n"
 " เพื่อพูดชื่อยาของท่าน"))
 
@@ -224,8 +227,12 @@ class ConfirmPillNameScreen(QDialog):
 
     def retranslateUi(self, background_confirm_pill_name):
         _translate = QtCore.QCoreApplication.translate
+
+        global globalPillData
+        channelID = "ช่องที่ " + str(globalPillData["id"] + 1)
+
         background_confirm_pill_name.setWindowTitle(_translate("background_confirm_pill_name", "Dialog"))
-        self.no_channel.setText(_translate("background_confirm_pill_name", "ช่องที่ 1"))
+        self.no_channel.setText(_translate("background_confirm_pill_name", channelID))
         self.label_1.setText(_translate("background_confirm_pill_name", "ชื่อยา"))
         self.show_pill_name.setText(_translate("background_confirm_pill_name", self.inputPillName))
         self.button_correct_pill_name.setText(_translate("background_confirm_pill_name", "ถูกต้อง"))
@@ -233,7 +240,7 @@ class ConfirmPillNameScreen(QDialog):
 
     def clickCorrectButton(self):
         print("ไปหน้าใส่เม็ดยาทั้งหมด")
-        
+
         global globalPillData
         globalPillData["name"] = globalInputPillName
         print(globalPillData)

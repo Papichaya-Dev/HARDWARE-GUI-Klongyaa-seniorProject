@@ -100,8 +100,12 @@ class TotalPillsScreen(QDialog):
 
     def retranslateUi(self, background_total_pills):
         _translate = QtCore.QCoreApplication.translate
+
+        global globalPillData
+        channelID = "ช่องที่ " + str(globalPillData["id"] + 1)
+        
         background_total_pills.setWindowTitle(_translate("background_total_pills", "Dialog"))
-        self.no_channel.setText(_translate("background_total_pills", "ช่องที่ 1"))
+        self.no_channel.setText(_translate("background_total_pills", channelID))
         self.text_question_inputting_total_pills.setText(_translate("background_total_pills", "กรุณาระบุจำนวนเม็ดยาทั้งหมดที่บรรจุ"))
         self.button_save_total_pills.setText(_translate("background_total_pills", "บันทึก"))
         self.button_skip_total_pills.setText(_translate("background_total_pills", "ข้าม"))
@@ -204,8 +208,12 @@ class AmountPillPerTimeScreen(QDialog):
 
     def retranslateUi(self, background_amount_pill_per_time):
         _translate = QtCore.QCoreApplication.translate
+
+        global globalPillData
+        channelID = "ช่องที่ " + str(globalPillData["id"] + 1)
+
         background_amount_pill_per_time.setWindowTitle(_translate("background_amount_pill_per_time", "Dialog"))
-        self.no_channel.setText(_translate("background_amount_pill_per_time", "ช่องที่ 1"))
+        self.no_channel.setText(_translate("background_amount_pill_per_time", channelID))
         self.text_question_amount_pill_per_time.setText(_translate("background_amount_pill_per_time", "กรุณาระบุจำนวนเม็ดยาที่ต้องทานในเเต่ละมื้อ"))
         self.button_next.setText(_translate("background_amount_pill_per_time", "ถัดไป"))
 
