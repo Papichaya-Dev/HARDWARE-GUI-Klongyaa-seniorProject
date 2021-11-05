@@ -6,9 +6,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from shared.main_success_save_screen import SuccessSaveScreen
 
 import __main__
+
+globalPillData = {}
+
 class PillSummaryScreen(QDialog):
-    def __init__(self):
+    def __init__(self, pillData):
         super().__init__()
+        global globalPillData
+        globalPillData = pillData
         self.setupUi(self)
         self.button_save_pill_summary.clicked.connect(self.savePillSummary)
         #----------- SET VARIABLE OF TEXT LABEL ------------#

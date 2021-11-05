@@ -9,7 +9,7 @@ from screen.inputPillNameScreen.gen.gen_input_voice_screen_again import *
 from screen.pillSummaryScreen.main_pillSummaryScreen import PillSummaryScreen
 import __main__
 
-timesToTakePillArr = []
+globalTimesToTakePillArr = []
 mockTime = 12
 globalPillData = {}
 
@@ -120,18 +120,19 @@ class LoadingVoiceScreen(QDialog):
         self.close()
         #================ go to add summary time screen ====================#
         global mockTime
-        global timesToTakePillArr
+        global globalTimesToTakePillArr
         mockTime = mockTime + 1
-        timesToTakePillArr.append(str(mockTime) + ".00")
-        add_summary_time_screen = AddSummaryTimeScreen(timesToTakePillArr)
+        globalTimesToTakePillArr.append(str(mockTime) + ".00")
+        add_summary_time_screen = AddSummaryTimeScreen()
         __main__.widget.addWidget( add_summary_time_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
 
 class AddSummaryTimeScreen(QDialog):
-    def __init__(self, mockTimesArr):
+    def __init__(self):
         super().__init__()
-        self.timesToTakesPillArr = mockTimesArr
+        global globalTimesToTakePillArr
+        self.timesToTakesPillArr = globalTimesToTakePillArr
         self.setupUi(self)
         #================ when click button ==========================#
         self.success_button.clicked.connect(self.goToPillSummaryScreen)
@@ -221,14 +222,21 @@ class AddSummaryTimeScreen(QDialog):
         self.success_button.setText(_translate("background_confirm_times_to_take_pill", "เสร็จสิ้น"))
 
     def goToInputTimeToTakePillScreen(self):
-         #================ go to add summary time screen ====================#
-        screen = InputTimeToTakePillScreen()
+        #================ go to add summary time screen ====================#
+        global globalPillData
+
+        screen = InputTimeToTakePillScreen(globalPillData)
         __main__.widget.removeWidget(self)
         __main__.widget.addWidget(screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
     def goToPillSummaryScreen(self):
-         #================ go to add summary time screen ====================#
-        add_summary_time_screen = PillSummaryScreen()
+        #================ go to add summary time screen ====================#
+        global globalTimesToTakePillArr
+        global globalPillData
+        globalPillData["timeToTake"] = globalTimesToTakePillArr
+        print(globalPillData)
+
+        add_summary_time_screen = PillSummaryScreen(globalPillData)
         __main__.widget.addWidget(add_summary_time_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
