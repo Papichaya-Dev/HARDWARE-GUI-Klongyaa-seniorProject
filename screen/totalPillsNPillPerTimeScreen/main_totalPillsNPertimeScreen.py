@@ -18,8 +18,8 @@ class TotalPillsScreen(QDialog):
         self.slider_total_pills.setMaximum(30)
         self.slider_total_pills.setMinimum(0)
         self.slider_total_pills.valueChanged.connect(self.updateSliderTotalPills)
-        self.button_skip_total_pills.clicked.connect(self.goToAmountPillPerTimeScreen)
-        self.button_save_total_pills.clicked.connect(self.goToAmountPillPerTimeScreen)
+        self.button_skip_total_pills.clicked.connect(lambda: self.goToAmountPillPerTimeScreen(True))
+        self.button_save_total_pills.clicked.connect(lambda: self.goToAmountPillPerTimeScreen(False))
         
     def setupUi(self, background_total_pills):
         background_total_pills.setObjectName("background_total_pills")
@@ -111,25 +111,23 @@ class TotalPillsScreen(QDialog):
         self.lcdNumber.display(count_of_total_pills)
         print("test", self.lcdNumber.display)
         print("[total of pills] : ",count_of_total_pills)
-        self.total_pills = [{
-            "id": 1,
-            "total_pills": count_of_total_pills,
-        }]
+        self.total_pills = count_of_total_pills
 
     #======================= define function : Go to amount pill per time =======================#
-    def goToAmountPillPerTimeScreen(self):
-        if not hasattr(self, 'total_pills') :
-            self.total_pills = [{
-            "id": 1,
-            "total_pills": 0,
-        }]
+    def goToAmountPillPerTimeScreen(self, isSkip):
+        if not hasattr(self, 'total_pills') or isSkip:
+            self.total_pills = -1
             
-        pill_per_time_screen = AmountPillPerTimeScreen(self.total_pills)
+        global globalPillData
+        globalPillData["totalPills"] = self.total_pills
+        print(globalPillData)
+
+        pill_per_time_screen = AmountPillPerTimeScreen()
         __main__.widget.addWidget(pill_per_time_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
 class AmountPillPerTimeScreen(QDialog):
-    def __init__(self,total_pills):
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
     #======================= set min-max of amount pill per time screen =======================#
@@ -137,8 +135,6 @@ class AmountPillPerTimeScreen(QDialog):
         self.slider_amount_pill_per_time.setMinimum(0)
         self.slider_amount_pill_per_time.valueChanged.connect(self.updateSliderPillPerTime)
         self.button_next.clicked.connect(self.gotoInputTimesToTakePill)
-        self.total_pills = total_pills
-        print("รายละเอียดข้อมูลยา",self.total_pills)
           
     def setupUi(self, background_amount_pill_per_time):
         background_amount_pill_per_time.setObjectName("background_amount_pill_per_time")
@@ -217,15 +213,18 @@ class AmountPillPerTimeScreen(QDialog):
     def updateSliderPillPerTime(self,amount_of_pill_per_time):
         self.lcdNumberPillPerTime.display(amount_of_pill_per_time)
         print("[amount of pill per time] : ",amount_of_pill_per_time)
-        self.amount_pill = [{
-            "amount_pill": amount_of_pill_per_time
-        }]
+        self.amount_pill =  amount_of_pill_per_time
         #======================= add amount pill per time data to array object =======================#
-        self.total_pills[0]['amount_pill'] = amount_of_pill_per_time
 
     def gotoInputTimesToTakePill(self):
-        print("บันทึกจำนวนยาที่ต้องทานเเต่ละมื้อ = ", self.total_pills)
-        print("ไปหน้าเพิ่มเวลาทานยา")
-        input_times_to_take_pill_screen = InputTimeToTakePillScreen()
-        __main__.widget.addWidget(input_times_to_take_pill_screen)
-        __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
+
+        if hasattr(self, 'amount_pill') :
+            print("ไปหน้าเพิ่มเวลาทานยา")
+
+            global globalPillData
+            globalPillData["pillsPerTime"] = self.amount_pill
+            print(globalPillData)
+
+            input_times_to_take_pill_screen = InputTimeToTakePillScreen(globalPillData)
+            __main__.widget.addWidget(input_times_to_take_pill_screen)
+            __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)

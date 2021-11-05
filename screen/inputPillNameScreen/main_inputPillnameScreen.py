@@ -233,8 +233,11 @@ class ConfirmPillNameScreen(QDialog):
 
     def clickCorrectButton(self):
         print("ไปหน้าใส่เม็ดยาทั้งหมด")
+        
         global globalPillData
         globalPillData["name"] = globalInputPillName
+        print(globalPillData)
+
         total_pill_screen = TotalPillsScreen(globalPillData)
         __main__.widget.addWidget(total_pill_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)

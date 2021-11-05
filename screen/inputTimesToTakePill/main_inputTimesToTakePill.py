@@ -11,10 +11,13 @@ import __main__
 
 timesToTakePillArr = []
 mockTime = 12
+globalPillData = {}
 
 class InputTimeToTakePillScreen(QDialog):
-    def __init__(self):
+    def __init__(self, pillData):
         super().__init__()
+        global globalPillData
+        globalPillData = pillData
         self.setupUi(self)
     #======================= set max-min of total pills =======================#
         self.button_input_times_to_take_pill.clicked.connect(self.voice_button_input_clicked)
