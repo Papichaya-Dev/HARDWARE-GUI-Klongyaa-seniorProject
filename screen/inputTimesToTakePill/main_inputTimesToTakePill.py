@@ -14,10 +14,13 @@ mockTime = 12
 globalPillData = {}
 
 class InputTimeToTakePillScreen(QDialog):
-    def __init__(self, pillData):
+    def __init__(self, pillData, editIndex):
         super().__init__()
+
         global globalPillData
         globalPillData = pillData
+
+        self.editIndex = editIndex
         self.setupUi(self)
     #======================= set max-min of total pills =======================#
         self.button_input_times_to_take_pill.clicked.connect(self.voice_button_input_clicked)
@@ -66,13 +69,14 @@ class InputTimeToTakePillScreen(QDialog):
 
     #======================= define function : when user click voice button =======================#
     def voice_button_input_clicked(self):
-        loading_screen = LoadingVoiceScreen()
+        loading_screen = LoadingVoiceScreen(self.editIndex)
         __main__.widget.addWidget(loading_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
 class LoadingVoiceScreen(QDialog):
-    def __init__(self):
+    def __init__(self, editIndex):
         super().__init__()
+        self.editIndex = editIndex
         self.setupUi(self)
 
     def setupUi(self, background_voice_loading):
@@ -125,8 +129,14 @@ class LoadingVoiceScreen(QDialog):
         #================ go to add summary time screen ====================#
         global mockTime
         global globalTimesToTakePillArr
+
         mockTime = mockTime + 1
-        globalTimesToTakePillArr.append(str(mockTime) + ".00")
+
+        if self.editIndex == -1 :
+            globalTimesToTakePillArr.append(str(mockTime) + ".00")
+        else :
+            globalTimesToTakePillArr[self.editIndex] = (str(mockTime) + ".00")
+
         add_summary_time_screen = AddSummaryTimeScreen()
         __main__.widget.addWidget( add_summary_time_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
@@ -175,8 +185,9 @@ class AddSummaryTimeScreen(QDialog):
         self.gridLayout.setObjectName("gridLayout")
         
 
-        for time in self.timesToTakesPillArr :
+        for idx, time in enumerate(self.timesToTakesPillArr) :
             objIndex = self.timesToTakesPillArr.index(time)
+
             timeToTakePillLabel = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             timeToTakePillLabel.setMinimumSize(QtCore.QSize(250, 0))
             timeToTakePillLabel.setMaximumSize(QtCore.QSize(250, 16777215))
@@ -196,6 +207,21 @@ class AddSummaryTimeScreen(QDialog):
             timeToTakePillEditButton.setMinimumSize(QtCore.QSize(70, 70))
             timeToTakePillEditButton.setStyleSheet("font-size: 40px; background-color: rgb(255, 74, 74); border-radius: 35px; color: white;")
             timeToTakePillEditButton.setObjectName("button_edit_time_" + str(objIndex))
+
+            # Max 5
+            if idx == 0 :
+                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(0))
+            elif idx == 1 :
+                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(1))
+            elif idx == 2 :
+                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(2))
+            elif idx == 3 :
+                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(3))
+            elif idx == 4 :
+                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(4))
+            else :
+                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(5))
+
             timeToTakePillEditButton.setText( "🖉")
             self.gridLayout.addWidget(timeToTakePillEditButton, 9+objIndex, 2, 1, 1)
 
@@ -229,11 +255,20 @@ class AddSummaryTimeScreen(QDialog):
         self.header_text.setText(_translate("background_confirm_times_to_take_pill", "เวลาที่ต้องทานยา"))
         self.success_button.setText(_translate("background_confirm_times_to_take_pill", "เสร็จสิ้น"))
 
+    def editTimeToTakePill(self, objIndex):
+        #================ go to add summary time screen ====================#
+        global globalPillData
+
+        screen = InputTimeToTakePillScreen(globalPillData, objIndex)
+        __main__.widget.removeWidget(self)
+        __main__.widget.addWidget(screen)
+        __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
+
     def goToInputTimeToTakePillScreen(self):
         #================ go to add summary time screen ====================#
         global globalPillData
 
-        screen = InputTimeToTakePillScreen(globalPillData)
+        screen = InputTimeToTakePillScreen(globalPillData, -1)
         __main__.widget.removeWidget(self)
         __main__.widget.addWidget(screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)

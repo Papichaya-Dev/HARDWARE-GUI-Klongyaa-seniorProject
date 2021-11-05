@@ -233,6 +233,6 @@ class AmountPillPerTimeScreen(QDialog):
             globalPillData["pillsPerTime"] = self.amount_pill
             print(globalPillData)
 
-            input_times_to_take_pill_screen = InputTimeToTakePillScreen(globalPillData)
+            input_times_to_take_pill_screen = InputTimeToTakePillScreen(globalPillData, -1)
             __main__.widget.addWidget(input_times_to_take_pill_screen)
             __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
