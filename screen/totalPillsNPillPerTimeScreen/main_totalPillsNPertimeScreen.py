@@ -6,9 +6,13 @@ from screen.totalPillsNPillPerTimeScreen.shared.gen_mock_screen import *
 from screen.inputTimesToTakePill.main_inputTimesToTakePill import *
 import __main__
 
+globalPillData = {}
+
 class TotalPillsScreen(QDialog):
-    def __init__(self):
+    def __init__(self, pillData):
         super().__init__()
+        global globalPillData
+        globalPillData = pillData
         self.setupUi(self)
         #======================= set max-min of total pills =======================#
         self.slider_total_pills.setMaximum(30)

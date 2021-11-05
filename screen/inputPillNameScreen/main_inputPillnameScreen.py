@@ -9,10 +9,15 @@ from screen.inputPillNameScreen.gen.gen_input_voice_screen_again import *
 from screen.totalPillsNPillPerTimeScreen.main_totalPillsNPertimeScreen import *
 import __main__
 
+globalInputPillName = ""
+mockNum = 0
+globalPillData = {}
+
 class InputPillNameScreen(QDialog):
-    def __init__(self):
+    def __init__(self, pillData):
         super().__init__()
-        self.mockPillName = "ยาพาราแซลมอน"
+        global globalPillData
+        globalPillData = pillData
         self.setupUi(self)
     #========================= 
     def clickVoiceButton(self):
@@ -130,13 +135,19 @@ class LoadingVoiceScreen(QDialog):
         self.movie.stop()
         self.close()
         #================ go to pill name screen ====================#
-        confirm_pill_name_screen = ConfirmPillNameScreen()
+        global globalInputPillName
+        global mockNum
+        mockNum = mockNum + 1
+        globalInputPillName = "พาราเซตาม่อน " + str(mockNum)
+
+        confirm_pill_name_screen = ConfirmPillNameScreen(globalInputPillName)
         __main__.widget.addWidget(confirm_pill_name_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
 class ConfirmPillNameScreen(QDialog):
-    def __init__(self):
+    def __init__(self, inputPillName):
         super().__init__()
+        self.inputPillName = inputPillName
         self.setupUi(self)
         #================ click button correct or incorrect ====================#
         self.button_correct_pill_name.clicked.connect(self.clickCorrectButton)
@@ -216,13 +227,15 @@ class ConfirmPillNameScreen(QDialog):
         background_confirm_pill_name.setWindowTitle(_translate("background_confirm_pill_name", "Dialog"))
         self.no_channel.setText(_translate("background_confirm_pill_name", "ช่องที่ 1"))
         self.label_1.setText(_translate("background_confirm_pill_name", "ชื่อยา"))
-        self.show_pill_name.setText(_translate("background_confirm_pill_name", "ยาพาราแซลมอน"))
+        self.show_pill_name.setText(_translate("background_confirm_pill_name", self.inputPillName))
         self.button_correct_pill_name.setText(_translate("background_confirm_pill_name", "ถูกต้อง"))
         self.button_incorrect_pill_name.setText(_translate("background_confirm_pill_name", "ไม่ถูกต้อง"))
 
     def clickCorrectButton(self):
         print("ไปหน้าใส่เม็ดยาทั้งหมด")
-        total_pill_screen = TotalPillsScreen()
+        global globalPillData
+        globalPillData["name"] = globalInputPillName
+        total_pill_screen = TotalPillsScreen(globalPillData)
         __main__.widget.addWidget(total_pill_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 

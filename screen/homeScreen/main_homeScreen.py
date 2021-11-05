@@ -28,6 +28,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_0 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
+                0,
                 pill_channel_datas["0"]
                 )
             )   
@@ -36,6 +37,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_1 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
+                1,
                 pill_channel_datas["1"]
                 )
             )   
@@ -44,6 +46,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_2 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
+                2,
                 pill_channel_datas["2"]
                 )
             )   
@@ -52,6 +55,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_3 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
+                3,
                 pill_channel_datas["3"]
                 )
             )   
@@ -60,6 +64,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_4 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
+                4,
                 pill_channel_datas["4"]
                 )
             )   
@@ -68,6 +73,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_5 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
+                5,
                 pill_channel_datas["5"]
                 )
             )   
@@ -76,6 +82,7 @@ class HomeScreen(QDialog):
         self.pill_channel_btn_6 = QtWidgets.QPushButton(
             UIHomeScreen, 
             clicked = lambda: gotoPillDetailScreen(
+                6,
                 pill_channel_datas["6"]
                 )
             )   
@@ -116,15 +123,21 @@ class HomeScreen(QDialog):
         _translate = QtCore.QCoreApplication.translate
         UIHomeScreen.setWindowTitle(_translate("UIHomeScreen", "Dialog"))
 
-def gotoPillDetailScreen(pill_channel_data):
+def gotoPillDetailScreen(channelID, pill_channel_data):
     if len(pill_channel_data) != 0 :
         # Change screen to pill detail screen
         detailScreen = DetailScreen(pill_channel_data)
         __main__.widget.addWidget(detailScreen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
     else :
-        print("Add pill")
-        voiceInputScreen = InputPillNameScreen()
+        pillData = {
+            "id" : channelID,
+            "name": "",
+            "totalPills": -1,
+            "pillsPerTime": -1,
+            "timeToTake": []
+        }
+        voiceInputScreen = InputPillNameScreen(pillData)
         __main__.widget.addWidget(voiceInputScreen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
     
