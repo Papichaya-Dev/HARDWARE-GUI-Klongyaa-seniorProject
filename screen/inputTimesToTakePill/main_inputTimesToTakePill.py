@@ -9,6 +9,9 @@ from screen.inputPillNameScreen.gen.gen_input_voice_screen_again import *
 from screen.pillSummaryScreen.main_pillSummaryScreen import PillSummaryScreen
 import __main__
 
+timesToTakePillArr = []
+mockTime = 12
+
 class InputTimeToTakePillScreen(QDialog):
     def __init__(self):
         super().__init__()
@@ -19,8 +22,7 @@ class InputTimeToTakePillScreen(QDialog):
     def setupUi(self, background_input_times_to_take_pill):
         background_input_times_to_take_pill.setObjectName("background_input_times_to_take_pill")
         background_input_times_to_take_pill.resize(1020, 600)
-        background_input_times_to_take_pill.setStyleSheet("QWidget#background_input_times_to_take_pill{\n"
-"background-color: #97C7F9}")
+        background_input_times_to_take_pill.setStyleSheet("QWidget#background_input_times_to_take_pill{\n""background-color: #97C7F9}")
         self.no_channel = QtWidgets.QLabel(background_input_times_to_take_pill)
         self.no_channel.setGeometry(QtCore.QRect(40, 30, 191, 71))
         font = QtGui.QFont()
@@ -30,11 +32,7 @@ class InputTimeToTakePillScreen(QDialog):
         font.setItalic(False)
         font.setWeight(9)
         self.no_channel.setFont(font)
-        self.no_channel.setStyleSheet("background-color: #C5E1FF;\n"
-"font: 75 36pt \"JasmineUPC\";\n"
-"border-radius: 25px;\n"
-"color: #070021;\n"
-"")
+        self.no_channel.setStyleSheet("background-color: #C5E1FF;\n""font: 75 36pt \"JasmineUPC\";\n""border-radius: 25px;\n""color: #070021;\n""")
         self.no_channel.setAlignment(QtCore.Qt.AlignCenter)
         self.no_channel.setObjectName("no_channel")
         self.question_input_times_to_take_pill = QtWidgets.QLabel(background_input_times_to_take_pill)
@@ -44,19 +42,7 @@ class InputTimeToTakePillScreen(QDialog):
         self.question_input_times_to_take_pill.setObjectName("question_input_times_to_take_pill")
         self.button_input_times_to_take_pill = QtWidgets.QToolButton(background_input_times_to_take_pill)
         self.button_input_times_to_take_pill.setGeometry(QtCore.QRect(430, 350, 141, 125))
-        self.button_input_times_to_take_pill.setStyleSheet("QToolButton#button_input_times_to_take_pill {\n"
-"   background-image: url(:/newPrefix/mic_icon.png); \n"
-"   border-radius: 35;\n"
-"   width:30px;\n"
-"}\n"
-"QToolButton#button_input_times_to_take_pill:hover {\n"
-"    background-color:#24BD73;\n"
-"    background-image: url(:/newPrefix/mic_icon.png);\n"
-"   border-radius: 35;\n"
-"   background-color:#B9D974;\n"
-"    width: 170px;\n"
-"    height: 100px;\n"
-"}")
+        self.button_input_times_to_take_pill.setStyleSheet("QToolButton#button_input_times_to_take_pill {\n""   background-image: url(:/newPrefix/mic_icon.png); \n""   border-radius: 35;\n""   width:30px;\n""}\n""QToolButton#button_input_times_to_take_pill:hover {\n""    background-color:#24BD73;\n""    background-image: url(:/newPrefix/mic_icon.png);\n""   border-radius: 35;\n""   background-color:#B9D974;\n""    width: 170px;\n""    height: 100px;\n""}")
         self.button_input_times_to_take_pill.setText("")
         self.button_input_times_to_take_pill.setObjectName("button_input_times_to_take_pill")
 
@@ -67,8 +53,7 @@ class InputTimeToTakePillScreen(QDialog):
         _translate = QtCore.QCoreApplication.translate
         background_input_times_to_take_pill.setWindowTitle(_translate("background_input_times_to_take_pill", "Dialog"))
         self.no_channel.setText(_translate("background_input_times_to_take_pill", "ช่องที่ 1"))
-        self.question_input_times_to_take_pill.setText(_translate("background_input_times_to_take_pill", "ดำเนินการกดปุ่ม \n"
-" เพื่อพูดเวลาทานยาพาราเซตามอล"))
+        self.question_input_times_to_take_pill.setText(_translate("background_input_times_to_take_pill", "ดำเนินการกดปุ่ม \n"" เพื่อพูดเวลาทานยาพาราเซตามอล"))
 
     import screen.inputPillNameScreen.gen.mic_icon
 
@@ -131,25 +116,28 @@ class LoadingVoiceScreen(QDialog):
         self.movie.stop()
         self.close()
         #================ go to add summary time screen ====================#
-        add_summary_time_screen = AddSummaryTimeScreen()
+        global mockTime
+        global timesToTakePillArr
+        mockTime = mockTime + 1
+        timesToTakePillArr.append(str(mockTime) + ".00")
+        add_summary_time_screen = AddSummaryTimeScreen(timesToTakePillArr)
         __main__.widget.addWidget( add_summary_time_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
 
 class AddSummaryTimeScreen(QDialog):
-    def __init__(self):
+    def __init__(self, mockTimesArr):
         super().__init__()
+        self.timesToTakesPillArr = mockTimesArr
         self.setupUi(self)
-
-        #================ when click success button ====================#
+        #================ when click button ==========================#
         self.success_button.clicked.connect(self.goToPillSummaryScreen)
 
 
     def setupUi(self, background_confirm_times_to_take_pill):
         background_confirm_times_to_take_pill.setObjectName("background_confirm_times_to_take_pill")
         background_confirm_times_to_take_pill.resize(1024, 600)
-        background_confirm_times_to_take_pill.setStyleSheet("QWidget#background_confirm_times_to_take_pill{\n"
-"background-color: #97C7F9}")
+        background_confirm_times_to_take_pill.setStyleSheet("QWidget#background_confirm_times_to_take_pill{\n""background-color: #97C7F9}")
         self.no_channel = QtWidgets.QLabel(background_confirm_times_to_take_pill)
         self.no_channel.setGeometry(QtCore.QRect(40, 30, 191, 71))
         font = QtGui.QFont()
@@ -159,11 +147,7 @@ class AddSummaryTimeScreen(QDialog):
         font.setItalic(False)
         font.setWeight(9)
         self.no_channel.setFont(font)
-        self.no_channel.setStyleSheet("background-color: #C5E1FF;\n"
-"font: 75 36pt \"JasmineUPC\";\n"
-"border-radius: 25px;\n"
-"color: #070021;\n"
-"")
+        self.no_channel.setStyleSheet("background-color: #C5E1FF;\n""font: 75 36pt \"JasmineUPC\";\n""border-radius: 25px;\n""color: #070021;\n""")
         self.no_channel.setAlignment(QtCore.Qt.AlignCenter)
         self.no_channel.setObjectName("no_channel")
         self.header_text = QtWidgets.QLabel(background_confirm_times_to_take_pill)
@@ -173,8 +157,7 @@ class AddSummaryTimeScreen(QDialog):
         self.header_text.setObjectName("header_text")
         self.scrollArea = QtWidgets.QScrollArea(background_confirm_times_to_take_pill)
         self.scrollArea.setGeometry(QtCore.QRect(80, 180, 871, 271))
-        self.scrollArea.setStyleSheet("background-color:rgb(156, 183, 255);\n"
-"border-color:rgb(156, 183, 255);")
+        self.scrollArea.setStyleSheet("background-color:rgb(156, 183, 255);\n""border-color:rgb(156, 183, 255);")
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
@@ -182,108 +165,46 @@ class AddSummaryTimeScreen(QDialog):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName("gridLayout")
-        self.show_time_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.show_time_2.setStyleSheet("font: 75 34pt \"JasmineUPC\";\n"
-"color: #070021;\n"
-"")
-        self.show_time_2.setObjectName("show_time_2")
-        self.gridLayout.addWidget(self.show_time_2, 10, 1, 1, 1)
-        self.question_time_no2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.question_time_no2.setMinimumSize(QtCore.QSize(250, 0))
-        self.question_time_no2.setMaximumSize(QtCore.QSize(250, 16777215))
-        self.question_time_no2.setStyleSheet("background-color: none;\n"
-"font: 75 30pt \"JasmineUPC\";\n"
-"border-radius: 25px;\n"
-"color: #070021;\n"
-"background-color: #C5E1FF;")
-        self.question_time_no2.setAlignment(QtCore.Qt.AlignCenter)
-        self.question_time_no2.setObjectName("question_time_no2")
-        self.gridLayout.addWidget(self.question_time_no2, 10, 0, 1, 1)
-        self.question_time_no1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.question_time_no1.setMinimumSize(QtCore.QSize(250, 0))
-        self.question_time_no1.setMaximumSize(QtCore.QSize(250, 16777215))
-        self.question_time_no1.setStyleSheet("background-color: none;\n"
-"font: 75 30pt \"JasmineUPC\";\n"
-"border-radius: 25px;\n"
-"color: #070021;\n"
-"background-color: #C5E1FF;")
-        self.question_time_no1.setAlignment(QtCore.Qt.AlignCenter)
-        self.question_time_no1.setObjectName("question_time_no1")
-        self.gridLayout.addWidget(self.question_time_no1, 9, 0, 1, 1)
-        self.add_time_button = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
-        self.add_time_button.setMinimumSize(QtCore.QSize(70, 70))
-        self.add_time_button.setStyleSheet("QToolButton#add_time_button {\n"
-"   font-size: 40px;\n"
-"    background-color:#24BD73;\n"
-"  border-radius: 35px;\n"
-"  color: white;\n"
-"}\n"
-"QToolButton#add_time_button {\n"
-"    font-size: 40px;\n"
-"    background-color:#24BD73;\n"
-"  border-radius: 35px;\n"
-"  color: white;\n"
-"}")
-        self.add_time_button.setObjectName("add_time_button")
-        self.gridLayout.addWidget(self.add_time_button, 10, 3, 1, 1)
-        self.show_time = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.show_time.setStyleSheet("font: 75 34pt \"JasmineUPC\";\n"
-"color: #070021;\n"
-"")
-        self.show_time.setObjectName("show_time")
-        self.gridLayout.addWidget(self.show_time, 9, 1, 1, 1)
-        self.button_edit_time = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
-        self.button_edit_time.setMinimumSize(QtCore.QSize(70, 70))
-        self.button_edit_time.setStyleSheet("QToolButton#button_edit_time {\n"
-"   font-size: 40px;\n"
-"  background-color: rgb(255, 74, 74);\n"
-"  border-radius: 35px;\n"
-"  color: white;\n"
-"}\n"
-"QToolButton#button_edit_time {\n"
-"    font-size: 40px;\n"
-"  background-color: rgb(255, 50, 50);\n"
-"  border-radius: 35px;\n"
-"  color: white;\n"
-"}")
-        self.button_edit_time.setObjectName("button_edit_time")
-        self.gridLayout.addWidget(self.button_edit_time, 9, 2, 1, 1)
-        self.button_edit_time_2 = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
-        self.button_edit_time_2.setMinimumSize(QtCore.QSize(70, 70))
-        self.button_edit_time_2.setStyleSheet("QToolButton#button_edit_time_2 {\n"
-"   font-size: 40px;\n"
-"  background-color: rgb(255, 74, 74);\n"
-"  border-radius: 35px;\n"
-"  color: white;\n"
-"}\n"
-"QToolButton#button_edit_time_2 {\n"
-"    font-size: 40px;\n"
-"  background-color: rgb(255, 50, 50);\n"
-"  border-radius: 35px;\n"
-"  color: white;\n"
-"}")
-        self.button_edit_time_2.setObjectName("button_edit_time_2")
-        self.gridLayout.addWidget(self.button_edit_time_2, 10, 2, 1, 1)
+        
+
+        for time in self.timesToTakesPillArr :
+            objIndex = self.timesToTakesPillArr.index(time)
+            timeToTakePillLabel = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            timeToTakePillLabel.setMinimumSize(QtCore.QSize(250, 0))
+            timeToTakePillLabel.setMaximumSize(QtCore.QSize(250, 16777215))
+            timeToTakePillLabel.setStyleSheet("background-color: none;\n""font: 75 30pt \"JasmineUPC\";\n""border-radius: 25px;\n""color: #070021;\n""background-color: #C5E1FF;")
+            timeToTakePillLabel.setAlignment(QtCore.Qt.AlignCenter)
+            timeToTakePillLabel.setText("เวลาที่ " + str(objIndex + 1))
+            timeToTakePillLabel.setObjectName("question_time_no" + str(objIndex))
+            self.gridLayout.addWidget(timeToTakePillLabel, 9+objIndex, 0, 1, 1)
+
+            timeToTakePillData = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            timeToTakePillData.setStyleSheet("font: 75 34pt \"JasmineUPC\";\n""color: #070021;\n""")
+            timeToTakePillData.setText(time)
+            timeToTakePillData.setObjectName("show_time_" + str(objIndex))
+            self.gridLayout.addWidget(timeToTakePillData, 9+objIndex, 1, 1, 1)
+
+            timeToTakePillEditButton = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
+            timeToTakePillEditButton.setMinimumSize(QtCore.QSize(70, 70))
+            timeToTakePillEditButton.setStyleSheet("font-size: 40px; background-color: rgb(255, 74, 74); border-radius: 35px; color: white;")
+            timeToTakePillEditButton.setObjectName("button_edit_time_" + str(objIndex))
+            timeToTakePillEditButton.setText( "🖉")
+            self.gridLayout.addWidget(timeToTakePillEditButton, 9+objIndex, 2, 1, 1)
+
+            if objIndex + 1 == len(self.timesToTakesPillArr) :
+                timeToTakePillAddButton = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
+                timeToTakePillAddButton.setMinimumSize(QtCore.QSize(70, 70))
+                timeToTakePillAddButton.setStyleSheet("QToolButton#add_time_button {\n""   font-size: 40px;\n""    background-color:#24BD73;\n""  border-radius: 35px;\n""  color: white;\n""}\n""QToolButton#add_time_button {\n""    font-size: 40px;\n""    background-color:#24BD73;\n""  border-radius: 35px;\n""  color: white;\n""}")
+                timeToTakePillAddButton.setText("+")
+                timeToTakePillAddButton.clicked.connect(self.goToInputTimeToTakePillScreen)
+                timeToTakePillAddButton.setObjectName("add_time_button")
+                self.gridLayout.addWidget(timeToTakePillAddButton, 9+objIndex, 3, 1, 1)
+
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.success_button = QtWidgets.QToolButton(background_confirm_times_to_take_pill)
         self.success_button.setGeometry(QtCore.QRect(400, 470, 231, 103))
         self.success_button.setMinimumSize(QtCore.QSize(100, 50))
-        self.success_button.setStyleSheet("QToolButton#success_button {\n"
-"       font: 75 36pt \"JasmineUPC\";\n"
-"    background-color:#24BD73;\n"
-"    color: #ffffff;\n"
-"    border-radius:20px;\n"
-"    width: 170px;\n"
-"    height: 100px;\n"
-"}\n"
-"QToolButton#success_button:hover {\n"
-"    font: 75 36pt \"JasmineUPC\";\n"
-"    background-color:#23B36D;\n"
-"    color: #ffffff;\n"
-"    border-radius:20px;\n"
-"    width: 170px;\n"
-"    height:100px;\n"
-"}")
+        self.success_button.setStyleSheet("QToolButton#success_button {\n""       font: 75 36pt \"JasmineUPC\";\n""    background-color:#24BD73;\n""    color: #ffffff;\n""    border-radius:20px;\n""    width: 170px;\n""    height: 100px;\n""}\n""QToolButton#success_button:hover {\n""    font: 75 36pt \"JasmineUPC\";\n""    background-color:#23B36D;\n""    color: #ffffff;\n""    border-radius:20px;\n""    width: 170px;\n""    height:100px;\n""}")
         self.success_button.setObjectName("success_button")
 
         self.retranslateUi(background_confirm_times_to_take_pill)
@@ -294,17 +215,17 @@ class AddSummaryTimeScreen(QDialog):
         background_confirm_times_to_take_pill.setWindowTitle(_translate("background_confirm_times_to_take_pill", "Dialog"))
         self.no_channel.setText(_translate("background_confirm_times_to_take_pill", "ช่องที่ 1"))
         self.header_text.setText(_translate("background_confirm_times_to_take_pill", "เวลาที่ต้องทานยา"))
-        self.show_time_2.setText(_translate("background_confirm_times_to_take_pill", "12.00 น."))
-        self.question_time_no2.setText(_translate("background_confirm_times_to_take_pill", "เวลาที่ 2"))
-        self.question_time_no1.setText(_translate("background_confirm_times_to_take_pill", "เวลาที่ 1"))
-        self.add_time_button.setText(_translate("background_confirm_times_to_take_pill", "+"))
-        self.show_time.setText(_translate("background_confirm_times_to_take_pill", "12.00 น."))
-        self.button_edit_time.setText(_translate("background_confirm_times_to_take_pill", "🖉"))
-        self.button_edit_time_2.setText(_translate("background_confirm_times_to_take_pill", "🖉"))
         self.success_button.setText(_translate("background_confirm_times_to_take_pill", "เสร็จสิ้น"))
-    
+
+    def goToInputTimeToTakePillScreen(self):
+         #================ go to add summary time screen ====================#
+        screen = InputTimeToTakePillScreen()
+        __main__.widget.removeWidget(self)
+        __main__.widget.addWidget(screen)
+        __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
+
     def goToPillSummaryScreen(self):
          #================ go to add summary time screen ====================#
         add_summary_time_screen = PillSummaryScreen()
-        __main__.widget.addWidget( add_summary_time_screen)
+        __main__.widget.addWidget(add_summary_time_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
