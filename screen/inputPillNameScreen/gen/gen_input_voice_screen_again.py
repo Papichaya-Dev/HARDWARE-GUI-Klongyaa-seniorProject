@@ -44,7 +44,7 @@ class Ui_input_voice_again(object):
         bankground_input_voice_again.setWindowTitle(_translate("bankground_input_voice_again", "Dialog"))
         self.question_of_input_voice_again.setText(_translate("bankground_input_voice_again", "กรุณาพูดชื่อยาอีกครั้ง"))
 
-import gen.mic_icon
+import screen.inputPillNameScreen.gen.mic_icon
 
 if __name__ == "__main__":
     import sys

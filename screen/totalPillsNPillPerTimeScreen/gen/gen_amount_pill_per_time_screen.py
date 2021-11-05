@@ -23,7 +23,7 @@ class Ui_amount_pill_per_time(object):
         self.no_channel.setAlignment(QtCore.Qt.AlignCenter)
         self.no_channel.setObjectName("no_channel")
         self.text_question_amount_pill_per_time = QtWidgets.QLabel(background_amount_pill_per_time)
-        self.text_question_amount_pill_per_time.setGeometry(QtCore.QRect(200, 120, 841, 81))
+        self.text_question_amount_pill_per_time.setGeometry(QtCore.QRect(200, 120, 150, 81))
         self.text_question_amount_pill_per_time.setStyleSheet("font: 34pt \"JasmineUPC\";")
         self.text_question_amount_pill_per_time.setObjectName("text_question_amount_pill_per_time")
         self.lcdNumberPillPerTime = QtWidgets.QLCDNumber(background_amount_pill_per_time)

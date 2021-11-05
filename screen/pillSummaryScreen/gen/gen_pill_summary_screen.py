@@ -1,14 +1,21 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'pill_summary_screen.ui'
+#
+# Created by: PyQt5 UI code generator 5.10
+#
+# WARNING! All changes made in this file will be lost!
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_pill_summary_screen(object):
     def setupUi(self, background_summary_screen):
         background_summary_screen.setObjectName("background_summary_screen")
-        background_summary_screen.resize(1024, 600)
+        background_summary_screen.resize(1020, 600)
         background_summary_screen.setStyleSheet("QWidget#background_summary_screen{\n"
 "background-color: #97C7F9}")
-        self.gridLayout = QtWidgets.QGridLayout(background_summary_screen)
-        self.gridLayout.setObjectName("gridLayout")
         self.text_header_summary_screen = QtWidgets.QLabel(background_summary_screen)
+        self.text_header_summary_screen.setGeometry(QtCore.QRect(300, 80, 375, 61))
         self.text_header_summary_screen.setStyleSheet("font: 75 34pt \"JasmineUPC\";\n"
 "")
         self.text_header_summary_screen.setScaledContents(False)
@@ -16,8 +23,8 @@ class Ui_pill_summary_screen(object):
         self.text_header_summary_screen.setWordWrap(False)
         self.text_header_summary_screen.setIndent(50)
         self.text_header_summary_screen.setObjectName("text_header_summary_screen")
-        self.gridLayout.addWidget(self.text_header_summary_screen, 3, 0, 1, 1)
         self.scroll_area = QtWidgets.QScrollArea(background_summary_screen)
+        self.scroll_area.setGeometry(QtCore.QRect(20, 160, 981, 300))
         self.scroll_area.setMinimumSize(QtCore.QSize(0, 300))
         self.scroll_area.setStyleSheet("background-color:rgb(156, 183, 255);\n"
 "border-color:rgb(156, 183, 255);\n"
@@ -26,7 +33,7 @@ class Ui_pill_summary_screen(object):
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setObjectName("scroll_area")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 996, 356))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 958, 324))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout_2.setObjectName("gridLayout_2")
@@ -207,14 +214,35 @@ class Ui_pill_summary_screen(object):
         self.question_total_pills.setObjectName("question_total_pills")
         self.gridLayout_2.addWidget(self.question_total_pills, 5, 0, 1, 1)
         self.scroll_area.setWidget(self.scrollAreaWidgetContents)
-        self.gridLayout.addWidget(self.scroll_area, 5, 0, 1, 1)
+        self.button_save_pill_summary = QtWidgets.QToolButton(background_summary_screen)
+        self.button_save_pill_summary.setGeometry(QtCore.QRect(380, 480, 231, 103))
+        self.button_save_pill_summary.setMinimumSize(QtCore.QSize(100, 50))
+        self.button_save_pill_summary.setStyleSheet("QToolButton#button_save_pill_summary {\n"
+"       font: 75 36pt \"JasmineUPC\";\n"
+"    background-color:#24BD73;\n"
+"    color: #ffffff;\n"
+"    border-radius:20px;\n"
+"        width: 170px;\n"
+"    height: 100px;\n"
+"}\n"
+"QToolButton#button_save_pill_summary:hover {\n"
+"    font: 75 36pt \"JasmineUPC\";\n"
+"    background-color:#23B36D;\n"
+"    color: #ffffff;\n"
+"    border-radius:20px;\n"
+"        width: 170px;\n"
+"    height: 100px;\n"
+"}")
+        self.button_save_pill_summary.setObjectName("button_save_pill_summary")
         self.no_channel = QtWidgets.QLabel(background_summary_screen)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.no_channel.sizePolicy().hasHeightForWidth())
-        self.no_channel.setSizePolicy(sizePolicy)
-        self.no_channel.setMaximumSize(QtCore.QSize(191, 61))
+        self.no_channel.setGeometry(QtCore.QRect(40, 30, 191, 71))
+        font = QtGui.QFont()
+        font.setFamily("JasmineUPC")
+        font.setPointSize(36)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(9)
+        self.no_channel.setFont(font)
         self.no_channel.setStyleSheet("background-color: #C5E1FF;\n"
 "font: 75 36pt \"JasmineUPC\";\n"
 "border-radius: 25px;\n"
@@ -222,27 +250,6 @@ class Ui_pill_summary_screen(object):
 "")
         self.no_channel.setAlignment(QtCore.Qt.AlignCenter)
         self.no_channel.setObjectName("no_channel")
-        self.gridLayout.addWidget(self.no_channel, 2, 0, 1, 1)
-        self.button_save_pill_summary = QtWidgets.QToolButton(background_summary_screen)
-        self.button_save_pill_summary.setMinimumSize(QtCore.QSize(100, 50))
-        self.button_save_pill_summary.setStyleSheet("QToolButton#button_save_pill_summary {\n"
-"       font: 75 36pt \"JasmineUPC\";\n"
-"    background-color:#24BD73;\n"
-"    color: #ffffff;\n"
-"    border-radius:20px;\n"
-"    width: 180px;\n"
-"    height: 80px;\n"
-"}\n"
-"QToolButton#button_save_pill_summary:hover {\n"
-"    font: 75 36pt \"JasmineUPC\";\n"
-"    background-color:#23B36D;\n"
-"    color: #ffffff;\n"
-"    border-radius:20px;\n"
-"    width: 180px;\n"
-"    height:80px;\n"
-"}")
-        self.button_save_pill_summary.setObjectName("button_save_pill_summary")
-        self.gridLayout.addWidget(self.button_save_pill_summary, 6, 0, 1, 1, QtCore.Qt.AlignHCenter)
 
         self.retranslateUi(background_summary_screen)
         QtCore.QMetaObject.connectSlotsByName(background_summary_screen)
@@ -263,8 +270,8 @@ class Ui_pill_summary_screen(object):
         self.question_pill_name.setText(_translate("background_summary_screen", "ชื่อยา"))
         self.question_time_no1.setText(_translate("background_summary_screen", "เวลาที่ 1"))
         self.question_total_pills.setText(_translate("background_summary_screen", "จำนวนยาทั้งหมด"))
-        self.no_channel.setText(_translate("background_summary_screen", "ช่องที่ 1"))
         self.button_save_pill_summary.setText(_translate("background_summary_screen", "บันทึก"))
+        self.no_channel.setText(_translate("background_summary_screen", "ช่องที่ 1"))
 
 
 if __name__ == "__main__":

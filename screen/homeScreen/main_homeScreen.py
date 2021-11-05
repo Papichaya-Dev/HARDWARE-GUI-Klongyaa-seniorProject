@@ -1,7 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog
-from screen.pillDetailScreen.main_detail_screen import DetailScreen
 import __main__
+from screen.inputPillNameScreen.main_inputPillnameScreen import InputPillNameScreen
+from screen.pillDetailScreen.main_detail_screen import DetailScreen
 
 class HomeScreen(QDialog):
     def __init__(self, pill_channel_datas):
@@ -123,4 +124,7 @@ def gotoPillDetailScreen(pill_channel_data):
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
     else :
         print("Add pill")
+        voiceInputScreen = InputPillNameScreen()
+        __main__.widget.addWidget(voiceInputScreen)
+        __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
     

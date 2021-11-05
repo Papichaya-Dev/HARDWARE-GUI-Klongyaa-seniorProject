@@ -63,7 +63,7 @@ class Ui_input_voice(object):
         self.question_input_voice.setText(_translate("background_input_pil_name", "ดำเนินการกดปุ่ม \n"
 " เพื่อพูดชื่อยาของท่าน"))
 
-import gen.mic_icon
+import screen.inputPillNameScreen.gen.mic_icon
 
 if __name__ == "__main__":
     import sys
