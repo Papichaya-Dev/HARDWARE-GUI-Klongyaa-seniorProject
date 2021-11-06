@@ -244,10 +244,10 @@ class PillSummaryScreen(QDialog):
 
     # def savePillSummary(self,edit_mode): * อย่าเพิ่งลบคอมเม้นท์
     def savePillSummary(self):
-        print("mock data :", pill_data)
         #----------- SAVE AND THEN GO TO HOME SCREEN -----------#
         success_save_screen = SuccessSaveScreen()
         # self.ui.text_screen_name.setText("Home screen")
+        __main__.widget.removeWidget(self)
         __main__.widget.addWidget(success_save_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
@@ -334,13 +334,10 @@ class InputPillNameScreen(QDialog):
     def clickVoiceButton(self):
         global globalPillData
         global globalInputPillName
-        print("testtttt")
-        print(globalPillData["name"])
-        print(globalPillData["name"].split(' ')[-1])
-        print(int(globalPillData["name"].split(' ')[-1]) + 1)
+
         nameIdx = int(globalPillData["name"].split(' ')[-1]) + 1
-        # globalPillData["name"] = 
         globalInputPillName = "พาราเซตาม่อน " + str(nameIdx)
+
         loading_screen = LoadingVoiceScreen(ConfirmPillNameScreen(globalInputPillName))
         __main__.widget.addWidget(loading_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
@@ -448,18 +445,14 @@ class ConfirmPillNameScreen(QDialog):
         self.button_incorrect_pill_name.setText(_translate("background_confirm_pill_name", "ไม่ถูกต้อง"))
 
     def clickCorrectButton(self):
-        print("ไปหน้าใส่เม็ดยาทั้งหมด")
-
         global globalPillData
         globalPillData["name"] = globalInputPillName
-        print(globalPillData)
 
         total_pill_screen = PillSummaryScreen(globalPillData)
         __main__.widget.addWidget(total_pill_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
     def clickIncorrectButton(self):
-        print("ไปหน้าใส่ชื่อยาอีกครั้ง")
         input_voice_again = InputVoiceAgain()
         __main__.widget.addWidget(input_voice_again)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
@@ -578,8 +571,6 @@ class TotalPillsScreen(QDialog):
     #======================= define function : update slibar =======================#
     def updateSliderTotalPills(self,count_of_total_pills):
         self.lcdNumber.display(count_of_total_pills)
-        print("test", self.lcdNumber.display)
-        print("[total of pills] : ",count_of_total_pills)
         self.total_pills = count_of_total_pills
 
     #======================= define function : Go to amount pill per time =======================#
@@ -587,7 +578,6 @@ class TotalPillsScreen(QDialog):
         if hasattr(self, 'total_pills'):
             global globalPillData
             globalPillData["totalPills"] = self.total_pills
-            print(globalPillData)
 
             screen = PillSummaryScreen(globalPillData)
             __main__.widget.addWidget(screen)
@@ -664,7 +654,6 @@ class AmountPillPerTimeScreen(QDialog):
         if hasattr(self, 'amount_pill') :
             global globalPillData
             globalPillData["pillsPerTime"] = self.amount_pill
-            print(globalPillData)
 
             input_times_to_take_pill_screen = PillSummaryScreen(globalPillData)
             __main__.widget.addWidget(input_times_to_take_pill_screen)
@@ -813,7 +802,6 @@ class AddSummaryTimeScreen(QDialog):
         global globalTimesToTakePillArr
         global globalPillData
         globalPillData["timeToTake"] = globalTimesToTakePillArr
-        print(globalPillData)
 
         add_summary_time_screen = PillSummaryScreen(globalPillData)
         __main__.widget.addWidget(add_summary_time_screen)

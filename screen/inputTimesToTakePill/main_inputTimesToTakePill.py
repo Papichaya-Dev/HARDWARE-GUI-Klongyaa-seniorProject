@@ -281,5 +281,6 @@ class AddSummaryTimeScreen(QDialog):
         print(globalPillData)
 
         add_summary_time_screen = PillSummaryScreen(globalPillData)
+        __main__.widget.removeWidget(self)
         __main__.widget.addWidget(add_summary_time_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)

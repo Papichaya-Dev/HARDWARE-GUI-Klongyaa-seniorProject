@@ -5,6 +5,7 @@ from PyQt5.QtCore import Qt, QTimer
 from PyQt5 import QtCore, QtGui, QtWidgets 
 # from screen.homeScreen.main_homeScreen import HomeScreen
 import __main__
+import shared.images.success_icon
 
 class SuccessSaveScreen(QDialog):
     def __init__(self):
@@ -18,6 +19,8 @@ class SuccessSaveScreen(QDialog):
 
     def stopDelay(self):
         self.timer.stop()
+        __main__.widget.removeWidget(self)
+        __main__.widget.setCurrentIndex(0)
 
     def setupUi(self, background_success_save_screen):
         background_success_save_screen.setObjectName("background_success_save_screen")
@@ -50,20 +53,3 @@ class SuccessSaveScreen(QDialog):
         _translate = QtCore.QCoreApplication.translate
         background_success_save_screen.setWindowTitle(_translate("background_success_save_screen", "Dialog"))
         self.label_2.setText(_translate("background_success_save_screen", "บันทึกข้อมูลสำเร็จ"))
-
-import shared.images.success_icon
-
-if __name__ == "__main__":
-     app = QApplication(sys.argv)
-     screen = InputPillNameScreen()
-     widget = QtWidgets.QStackedWidget()
-     widget.setWindowTitle("GUI - KLONG_YAA")
-     widget.addWidget(screen)
-     widget.setFixedWidth(1024)
-     widget.setFixedHeight(600)
-     widget.show()
-     sys.exit(app.exec_())	
-try:
-    sys.exit(app.exec_())
-except:
-    print("Exiting")
