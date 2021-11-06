@@ -675,137 +675,6 @@ class AmountPillPerTimeScreen(QDialog):
 globalTimesToTakePillArr = []
 mockTime = 12
 
-class InputTimeToTakePillScreen(QDialog):
-    def __init__(self, pillData, editIndex):
-        super().__init__()
-
-        global globalPillData
-        globalPillData = pillData
-
-        self.editIndex = editIndex
-        self.setupUi(self)
-    #======================= set max-min of total pills =======================#
-        self.button_input_times_to_take_pill.clicked.connect(self.voice_button_input_clicked)
-
-    def setupUi(self, background_input_times_to_take_pill):
-        background_input_times_to_take_pill.setObjectName("background_input_times_to_take_pill")
-        background_input_times_to_take_pill.resize(1020, 600)
-        background_input_times_to_take_pill.setStyleSheet("QWidget#background_input_times_to_take_pill{\n""background-color: #97C7F9}")
-        self.no_channel = QtWidgets.QLabel(background_input_times_to_take_pill)
-        self.no_channel.setGeometry(QtCore.QRect(40, 30, 191, 71))
-        font = QtGui.QFont()
-        font.setFamily("JasmineUPC")
-        font.setPointSize(36)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(9)
-        self.no_channel.setFont(font)
-        self.no_channel.setStyleSheet("background-color: #C5E1FF;\n""font: 75 36pt \"JasmineUPC\";\n""border-radius: 25px;\n""color: #070021;\n""")
-        self.no_channel.setAlignment(QtCore.Qt.AlignCenter)
-        self.no_channel.setObjectName("no_channel")
-        self.question_input_times_to_take_pill = QtWidgets.QLabel(background_input_times_to_take_pill)
-        self.question_input_times_to_take_pill.setGeometry(QtCore.QRect(190, 150, 621, 201))
-        self.question_input_times_to_take_pill.setStyleSheet("font: 34pt \"JasmineUPC\";")
-        self.question_input_times_to_take_pill.setAlignment(QtCore.Qt.AlignCenter)
-        self.question_input_times_to_take_pill.setObjectName("question_input_times_to_take_pill")
-        self.button_input_times_to_take_pill = QtWidgets.QToolButton(background_input_times_to_take_pill)
-        self.button_input_times_to_take_pill.setGeometry(QtCore.QRect(430, 350, 141, 125))
-        self.button_input_times_to_take_pill.setStyleSheet("QToolButton#button_input_times_to_take_pill {\n""   background-image: url(:/newPrefix/mic_icon.png); \n""   border-radius: 35;\n""   width:30px;\n""}\n""QToolButton#button_input_times_to_take_pill:hover {\n""    background-color:#24BD73;\n""    background-image: url(:/newPrefix/mic_icon.png);\n""   border-radius: 35;\n""   background-color:#B9D974;\n""    width: 170px;\n""    height: 100px;\n""}")
-        self.button_input_times_to_take_pill.setText("")
-        self.button_input_times_to_take_pill.setObjectName("button_input_times_to_take_pill")
-
-        self.retranslateUi(background_input_times_to_take_pill)
-        QtCore.QMetaObject.connectSlotsByName(background_input_times_to_take_pill)
-
-    def retranslateUi(self, background_input_times_to_take_pill):
-        _translate = QtCore.QCoreApplication.translate
-
-        global globalPillData
-        channelID = "ช่องที่ " + str(globalPillData["id"] + 1)
-
-        background_input_times_to_take_pill.setWindowTitle(_translate("background_input_times_to_take_pill", "Dialog"))
-        self.no_channel.setText(_translate("background_input_times_to_take_pill", channelID))
-        self.question_input_times_to_take_pill.setText(_translate("background_input_times_to_take_pill", "ดำเนินการกดปุ่ม \n"" เพื่อพูดเวลาทานยาพาราเซตามอล"))
-
-    import screen.inputPillNameScreen.gen.mic_icon
-
-    #======================= define function : when user click voice button =======================#
-    def voice_button_input_clicked(self):
-        loading_screen = LoadingVoiceScreen(self.editIndex)
-        __main__.widget.addWidget(loading_screen)
-        __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
-
-class LoadingVoiceScreen(QDialog):
-    def __init__(self, editIndex):
-        super().__init__()
-        self.editIndex = editIndex
-        self.setupUi(self)
-
-    def setupUi(self, background_voice_loading):
-        background_voice_loading.setObjectName("background_voice_loading")
-        background_voice_loading.resize(1020, 600)
-        background_voice_loading.setStyleSheet("QWidget#background_voice_loading{\n" "background-color: #97C7F9}")
-        self.frame_of_loading = QtWidgets.QFrame(background_voice_loading)
-        self.frame_of_loading.setGeometry(QtCore.QRect(40, 38, 941, 521))
-        self.frame_of_loading.setStyleSheet("background-color: rgb(255, 255, 255);\n" "border-radius:40px")
-        self.frame_of_loading.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_of_loading.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_of_loading.setObjectName("frame_of_loading")
-        self.label_voice_gif = QtWidgets.QLabel(self.frame_of_loading)
-        self.label_voice_gif.setGeometry(QtCore.QRect(170, 100, 601, 231))
-        self.label_voice_gif.setStyleSheet("background-color: #ffffff;\n" "font: 75 36pt \"JasmineUPC\";")
-        self.label_voice_gif.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_voice_gif.setObjectName("label_voice_gif")
-        self.text_of_waiting_process = QtWidgets.QLabel(self.frame_of_loading)
-        self.text_of_waiting_process.setGeometry(QtCore.QRect(170, 360, 651, 61))
-        self.text_of_waiting_process.setStyleSheet("font: 34pt \"JasmineUPC\";")
-        self.text_of_waiting_process.setObjectName("text_of_waiting_process")
-
-        self.retranslateUi(background_voice_loading)
-        QtCore.QMetaObject.connectSlotsByName(background_voice_loading)
-
-    def retranslateUi(self, background_voice_loading):
-        _translate = QtCore.QCoreApplication.translate
-        background_voice_loading.setWindowTitle(_translate("background_voice_loading", "Dialog"))
-        self.label_voice_gif.setText(_translate("background_voice_loading", "sound loading gif"))
-        self.text_of_waiting_process.setText(_translate("background_voice_loading", "ระบบกำลังประมวลผล โปรดรอสักครู่"))
-
-        #================ set voice loading gif ====================#
-        self.movie = QMovie('shared/images/sound.gif')
-        self.label_voice_gif.setMovie(self.movie)
-        #================ set delay 2 second ====================#
-        timer = QTimer(self)
-        self.startAnimation()
-        timer.singleShot(2000, self.stopAnimation)
-        self.show()
-
-    def startAnimation(self):
-        self.movie.start()
-
-    def stopAnimation(self):
-        self.movie.stop()
-        self.close()
-        #================ go to add summary time screen ====================#
-        global mockTime
-        global globalTimesToTakePillArr
-        global globalPillData
-
-        buff = []
-        for time in globalTimesToTakePillArr :
-            buff.append(time.split('.')[0])
-        
-        mockTime = max(buff) + 1
-
-        if self.editIndex == -1 :
-            globalTimesToTakePillArr.append(str(mockTime) + ".00")
-        else :
-            globalTimesToTakePillArr[self.editIndex] = (str(mockTime) + ".00")
-
-        add_summary_time_screen = AddSummaryTimeScreen(globalPillData)
-        __main__.widget.addWidget( add_summary_time_screen)
-        __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
-
-
 class AddSummaryTimeScreen(QDialog):
     def __init__(self, pillData):
         super().__init__()
@@ -817,7 +686,6 @@ class AddSummaryTimeScreen(QDialog):
         self.setupUi(self)
         #================ when click button ==========================#
         self.success_button.clicked.connect(self.goToPillSummaryScreen)
-
 
     def setupUi(self, background_confirm_times_to_take_pill):
         background_confirm_times_to_take_pill.setObjectName("background_confirm_times_to_take_pill")
@@ -949,6 +817,81 @@ class AddSummaryTimeScreen(QDialog):
 
         add_summary_time_screen = PillSummaryScreen(globalPillData)
         __main__.widget.addWidget(add_summary_time_screen)
+        __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
+
+class InputTimeToTakePillScreen(QDialog):
+    def __init__(self, pillData, editIndex):
+        super().__init__()
+
+        global globalPillData
+        globalPillData = pillData
+
+        self.editIndex = editIndex
+        self.setupUi(self)
+    #======================= set max-min of total pills =======================#
+        self.button_input_times_to_take_pill.clicked.connect(self.voice_button_input_clicked)
+
+    def setupUi(self, background_input_times_to_take_pill):
+        background_input_times_to_take_pill.setObjectName("background_input_times_to_take_pill")
+        background_input_times_to_take_pill.resize(1020, 600)
+        background_input_times_to_take_pill.setStyleSheet("QWidget#background_input_times_to_take_pill{\n""background-color: #97C7F9}")
+        self.no_channel = QtWidgets.QLabel(background_input_times_to_take_pill)
+        self.no_channel.setGeometry(QtCore.QRect(40, 30, 191, 71))
+        font = QtGui.QFont()
+        font.setFamily("JasmineUPC")
+        font.setPointSize(36)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(9)
+        self.no_channel.setFont(font)
+        self.no_channel.setStyleSheet("background-color: #C5E1FF;\n""font: 75 36pt \"JasmineUPC\";\n""border-radius: 25px;\n""color: #070021;\n""")
+        self.no_channel.setAlignment(QtCore.Qt.AlignCenter)
+        self.no_channel.setObjectName("no_channel")
+        self.question_input_times_to_take_pill = QtWidgets.QLabel(background_input_times_to_take_pill)
+        self.question_input_times_to_take_pill.setGeometry(QtCore.QRect(190, 150, 621, 201))
+        self.question_input_times_to_take_pill.setStyleSheet("font: 34pt \"JasmineUPC\";")
+        self.question_input_times_to_take_pill.setAlignment(QtCore.Qt.AlignCenter)
+        self.question_input_times_to_take_pill.setObjectName("question_input_times_to_take_pill")
+        self.button_input_times_to_take_pill = QtWidgets.QToolButton(background_input_times_to_take_pill)
+        self.button_input_times_to_take_pill.setGeometry(QtCore.QRect(430, 350, 141, 125))
+        self.button_input_times_to_take_pill.setStyleSheet("QToolButton#button_input_times_to_take_pill {\n""   background-image: url(:/newPrefix/mic_icon.png); \n""   border-radius: 35;\n""   width:30px;\n""}\n""QToolButton#button_input_times_to_take_pill:hover {\n""    background-color:#24BD73;\n""    background-image: url(:/newPrefix/mic_icon.png);\n""   border-radius: 35;\n""   background-color:#B9D974;\n""    width: 170px;\n""    height: 100px;\n""}")
+        self.button_input_times_to_take_pill.setText("")
+        self.button_input_times_to_take_pill.setObjectName("button_input_times_to_take_pill")
+
+        self.retranslateUi(background_input_times_to_take_pill)
+        QtCore.QMetaObject.connectSlotsByName(background_input_times_to_take_pill)
+
+    def retranslateUi(self, background_input_times_to_take_pill):
+        _translate = QtCore.QCoreApplication.translate
+
+        global globalPillData
+        channelID = "ช่องที่ " + str(globalPillData["id"] + 1)
+
+        background_input_times_to_take_pill.setWindowTitle(_translate("background_input_times_to_take_pill", "Dialog"))
+        self.no_channel.setText(_translate("background_input_times_to_take_pill", channelID))
+        self.question_input_times_to_take_pill.setText(_translate("background_input_times_to_take_pill", "ดำเนินการกดปุ่ม \n"" เพื่อพูดเวลาทานยาพาราเซตามอล"))
+
+    import screen.inputPillNameScreen.gen.mic_icon
+
+    #======================= define function : when user click voice button =======================#
+    def voice_button_input_clicked(self):
+        global mockTime
+        global globalTimesToTakePillArr
+        global globalPillData
+
+        buff = []
+        for time in globalTimesToTakePillArr :
+            buff.append(int(time.split('.')[0]))
+        
+        mockTime = max(buff) + 1
+
+        if self.editIndex == -1 :
+            globalTimesToTakePillArr.append(str(mockTime) + ".00")
+        else :
+            globalTimesToTakePillArr[self.editIndex] = (str(mockTime) + ".00")
+
+        loading_screen = LoadingVoiceScreen(AddSummaryTimeScreen(globalPillData))
+        __main__.widget.addWidget(loading_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
     
 if __name__ == "__main__":
