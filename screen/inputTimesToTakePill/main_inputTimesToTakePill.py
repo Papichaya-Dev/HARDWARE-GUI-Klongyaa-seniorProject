@@ -13,6 +13,15 @@ globalTimesToTakePillArr = []
 mockTime = 12
 globalPillData = {}
 
+def resetGlobalData() :
+    global globalPillData
+    global globalTimesToTakePillArr
+    global mockTime
+
+    globalTimesToTakePillArr = []
+    mockTime = 12
+    globalPillData = {}
+
 class InputTimeToTakePillScreen(QDialog):
     def __init__(self, pillData, editIndex):
         super().__init__()
@@ -284,3 +293,4 @@ class AddSummaryTimeScreen(QDialog):
         __main__.widget.removeWidget(self)
         __main__.widget.addWidget(add_summary_time_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
+        resetGlobalData()

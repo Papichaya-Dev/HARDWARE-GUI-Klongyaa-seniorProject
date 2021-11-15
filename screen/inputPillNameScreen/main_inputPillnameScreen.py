@@ -13,6 +13,15 @@ globalInputPillName = ""
 mockNum = 0
 globalPillData = {}
 
+def resetGlobalData() :
+    global globalPillData
+    global globalInputPillName
+    global mockNum
+
+    globalInputPillName = ""
+    mockNum = 0
+    globalPillData = {}
+
 class InputPillNameScreen(QDialog):
     def __init__(self, pillData):
         super().__init__()
@@ -25,7 +34,7 @@ class InputPillNameScreen(QDialog):
     #========================= 
     def clickVoiceButton(self):
         loading_screen = LoadingVoiceScreen()
-        # __main__.widget.removeWidget(self)
+        __main__.widget.removeWidget(self)
         __main__.widget.addWidget(loading_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
     
@@ -150,7 +159,7 @@ class LoadingVoiceScreen(QDialog):
         globalInputPillName = "พาราเซตาม่อน " + str(mockNum)
 
         confirm_pill_name_screen = ConfirmPillNameScreen(globalInputPillName)
-        # __main__.widget.removeWidget(self)
+        __main__.widget.removeWidget(self)
         __main__.widget.addWidget(confirm_pill_name_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
@@ -253,14 +262,15 @@ class ConfirmPillNameScreen(QDialog):
         print(globalPillData)
 
         total_pill_screen = TotalPillsScreen(globalPillData)
-        # __main__.widget.removeWidget(self)
+        __main__.widget.removeWidget(self)
         __main__.widget.addWidget(total_pill_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
+        resetGlobalData()
 
     def clickIncorrectButton(self):
         print("ไปหน้าใส่ชื่อยาอีกครั้ง")
         input_voice_again = InputVoiceAgain()
-        # __main__.widget.removeWidget(self)
+        __main__.widget.removeWidget(self)
         __main__.widget.addWidget(input_voice_again)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
@@ -318,7 +328,7 @@ class InputVoiceAgain(QDialog):
 
     def clickVoiceButtonAgain(self):
         loading_screen = LoadingVoiceScreen()
-        # __main__.widget.removeWidget(self)
+        __main__.widget.removeWidget(self)
         __main__.widget.addWidget(loading_screen)
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
