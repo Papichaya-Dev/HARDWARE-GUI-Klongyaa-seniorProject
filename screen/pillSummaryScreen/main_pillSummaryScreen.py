@@ -245,7 +245,8 @@ class PillSummaryScreen(QDialog):
     # def savePillSummary(self,edit_mode): * อย่าเพิ่งลบคอมเม้นท์
     def savePillSummary(self):
         #----------- SAVE AND THEN GO TO HOME SCREEN -----------#
-        success_save_screen = SuccessSaveScreen()
+        global globalPillData
+        success_save_screen = SuccessSaveScreen(globalPillData)
         # self.ui.text_screen_name.setText("Home screen")
         __main__.widget.removeWidget(self)
         __main__.widget.addWidget(success_save_screen)

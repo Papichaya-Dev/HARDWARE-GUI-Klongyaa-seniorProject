@@ -8,8 +8,9 @@ import __main__
 import shared.images.success_icon
 
 class SuccessSaveScreen(QDialog):
-    def __init__(self):
+    def __init__(self, pillData):
         super().__init__()
+        self.pillData = pillData
         self.setupUi(self)
 
         self.timer = QTimer()
@@ -19,8 +20,12 @@ class SuccessSaveScreen(QDialog):
 
     def stopDelay(self):
         self.timer.stop()
+        channelID = self.pillData["id"]
+        allPillDatas = __main__.pill_channel_datas
+        allPillDatas[str(channelID)] = self.pillData
         __main__.widget.removeWidget(self)
-        __main__.widget.setCurrentIndex(0)
+        __main__.widget.addWidget(__main__.HomeScreen(allPillDatas))
+        __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
     def setupUi(self, background_success_save_screen):
         background_success_save_screen.setObjectName("background_success_save_screen")
