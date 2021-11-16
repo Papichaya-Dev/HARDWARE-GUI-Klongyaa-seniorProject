@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>background_confirm_times_to_take_pill</class>
+ <widget class="QDialog" name="background_confirm_times_to_take_pill">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#background_confirm_times_to_take_pill{
+background-color: #97C7F9}</string>
+  </property>
+  <widget class="QLabel" name="no_channel">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>30</y>
+     <width>191</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>JasmineUPC</family>
+     <pointsize>36</pointsize>
+     <weight>9</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #C5E1FF;
+font: 75 36pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+</string>
+   </property>
+   <property name="text">
+    <string>ช่องที่ 1</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="header_text">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>30</y>
+     <width>331</width>
+     <height>201</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 34pt &quot;JasmineUPC&quot;;</string>
+   </property>
+   <property name="text">
+    <string>เวลาที่ต้องทานยา</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QScrollArea" name="scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>180</y>
+     <width>871</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:rgb(156, 183, 255);
+border-color:rgb(156, 183, 255);</string>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>869</width>
+      <height>269</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="10" column="1">
+      <widget class="QLabel" name="show_time_2">
+       <property name="styleSheet">
+        <string notr="true">font: 75 34pt &quot;JasmineUPC&quot;;
+color: #070021;
+</string>
+       </property>
+       <property name="text">
+        <string>12.00 น.</string>
+       </property>
+       <property name="margin">
+        <number>5</number>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="0">
+      <widget class="QLabel" name="question_time_no2">
+       <property name="minimumSize">
+        <size>
+         <width>250</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>250</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: none;
+font: 75 30pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+background-color: #C5E1FF;</string>
+       </property>
+       <property name="text">
+        <string>เวลาที่ 2</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="0">
+      <widget class="QLabel" name="question_time_no1">
+       <property name="minimumSize">
+        <size>
+         <width>250</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>250</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: none;
+font: 75 30pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
+color: #070021;
+background-color: #C5E1FF;</string>
+       </property>
+       <property name="text">
+        <string>เวลาที่ 1</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="3">
+      <widget class="QToolButton" name="add_time_button">
+       <property name="minimumSize">
+        <size>
+         <width>70</width>
+         <height>70</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolButton#add_time_button {
+   font-size: 40px;
+	background-color:#24BD73;
+  border-radius: 35px;
+  color: white;
+}
+QToolButton#add_time_button {
+	font-size: 40px;
+	background-color:#24BD73;
+  border-radius: 35px;
+  color: white;
+}</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="1">
+      <widget class="QLabel" name="show_time">
+       <property name="styleSheet">
+        <string notr="true">font: 75 34pt &quot;JasmineUPC&quot;;
+color: #070021;
+</string>
+       </property>
+       <property name="text">
+        <string>12.00 น.</string>
+       </property>
+       <property name="margin">
+        <number>5</number>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="2">
+      <widget class="QToolButton" name="button_edit_time">
+       <property name="minimumSize">
+        <size>
+         <width>70</width>
+         <height>70</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolButton#button_edit_time {
+   font-size: 40px;
+  background-color: rgb(255, 74, 74);
+  border-radius: 35px;
+  color: white;
+}
+QToolButton#button_edit_time {
+	font-size: 40px;
+  background-color: rgb(255, 50, 50);
+  border-radius: 35px;
+  color: white;
+}</string>
+       </property>
+       <property name="text">
+        <string>🖉</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="2">
+      <widget class="QToolButton" name="button_edit_time_2">
+       <property name="minimumSize">
+        <size>
+         <width>70</width>
+         <height>70</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolButton#button_edit_time_2 {
+   font-size: 40px;
+  background-color: rgb(255, 74, 74);
+  border-radius: 35px;
+  color: white;
+}
+QToolButton#button_edit_time_2 {
+	font-size: 40px;
+  background-color: rgb(255, 50, 50);
+  border-radius: 35px;
+  color: white;
+}</string>
+       </property>
+       <property name="text">
+        <string>🖉</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QToolButton" name="success_button">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>470</y>
+     <width>231</width>
+     <height>103</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton#success_button {
+   	font: 75 36pt &quot;JasmineUPC&quot;;
+	background-color:#24BD73;
+	color: #ffffff;
+	border-radius:20px;
+	width: 170px;
+	height: 100px;
+}
+QToolButton#success_button:hover {
+	font: 75 36pt &quot;JasmineUPC&quot;;
+	background-color:#23B36D;
+	color: #ffffff;
+	border-radius:20px;
+	width: 170px;
+	height:100px;
+}</string>
+   </property>
+   <property name="text">
+    <string>เสร็จสิ้น</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

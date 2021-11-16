@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_amount_pill_per_time(object):
     def setupUi(self, background_amount_pill_per_time):
         background_amount_pill_per_time.setObjectName("background_amount_pill_per_time")
-        background_amount_pill_per_time.resize(1020, 600)
+        background_amount_pill_per_time.resize(1024, 600)
         background_amount_pill_per_time.setStyleSheet("QWidget#background_amount_pill_per_time{\n"
 "background-color: #97C7F9}")
         self.no_channel = QtWidgets.QLabel(background_amount_pill_per_time)
@@ -23,7 +23,7 @@ class Ui_amount_pill_per_time(object):
         self.no_channel.setAlignment(QtCore.Qt.AlignCenter)
         self.no_channel.setObjectName("no_channel")
         self.text_question_amount_pill_per_time = QtWidgets.QLabel(background_amount_pill_per_time)
-        self.text_question_amount_pill_per_time.setGeometry(QtCore.QRect(200, 120, 841, 81))
+        self.text_question_amount_pill_per_time.setGeometry(QtCore.QRect(200, 120, 150, 81))
         self.text_question_amount_pill_per_time.setStyleSheet("font: 34pt \"JasmineUPC\";")
         self.text_question_amount_pill_per_time.setObjectName("text_question_amount_pill_per_time")
         self.lcdNumberPillPerTime = QtWidgets.QLCDNumber(background_amount_pill_per_time)
