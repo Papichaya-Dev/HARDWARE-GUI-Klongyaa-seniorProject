@@ -109,32 +109,18 @@ color: #070021;
        </property>
       </widget>
      </item>
-     <item row="10" column="0">
-      <widget class="QLabel" name="question_time_no2">
-       <property name="minimumSize">
-        <size>
-         <width>250</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>250</width>
-         <height>16777215</height>
-        </size>
-       </property>
+     <item row="9" column="1">
+      <widget class="QLabel" name="show_time">
        <property name="styleSheet">
-        <string notr="true">background-color: none;
-font: 75 30pt &quot;JasmineUPC&quot;;
-border-radius: 25px;
+        <string notr="true">font: 75 34pt &quot;JasmineUPC&quot;;
 color: #070021;
-background-color: #C5E1FF;</string>
+</string>
        </property>
        <property name="text">
-        <string>เวลาที่ 2</string>
+        <string>12.00 น.</string>
        </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
+       <property name="margin">
+        <number>5</number>
        </property>
       </widget>
      </item>
@@ -167,8 +153,8 @@ background-color: #C5E1FF;</string>
        </property>
       </widget>
      </item>
-     <item row="10" column="3">
-      <widget class="QToolButton" name="add_time_button">
+     <item row="10" column="2">
+      <widget class="QToolButton" name="button_edit_time_2">
        <property name="minimumSize">
         <size>
          <width>70</width>
@@ -176,36 +162,50 @@ background-color: #C5E1FF;</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QToolButton#add_time_button {
+        <string notr="true">QToolButton#button_edit_time_2 {
    font-size: 40px;
-	background-color:#24BD73;
+  background-color: rgb(255, 74, 74);
   border-radius: 35px;
   color: white;
 }
-QToolButton#add_time_button {
+QToolButton#button_edit_time_2 {
 	font-size: 40px;
-	background-color:#24BD73;
+  background-color: rgb(255, 50, 50);
   border-radius: 35px;
   color: white;
 }</string>
        </property>
        <property name="text">
-        <string>+</string>
+        <string>🖉</string>
        </property>
       </widget>
      </item>
-     <item row="9" column="1">
-      <widget class="QLabel" name="show_time">
+     <item row="10" column="0">
+      <widget class="QLabel" name="question_time_no2">
+       <property name="minimumSize">
+        <size>
+         <width>250</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>250</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 75 34pt &quot;JasmineUPC&quot;;
+        <string notr="true">background-color: none;
+font: 75 30pt &quot;JasmineUPC&quot;;
+border-radius: 25px;
 color: #070021;
-</string>
+background-color: #C5E1FF;</string>
        </property>
        <property name="text">
-        <string>12.00 น.</string>
+        <string>เวลาที่ 2</string>
        </property>
-       <property name="margin">
-        <number>5</number>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -225,33 +225,6 @@ color: #070021;
   color: white;
 }
 QToolButton#button_edit_time {
-	font-size: 40px;
-  background-color: rgb(255, 50, 50);
-  border-radius: 35px;
-  color: white;
-}</string>
-       </property>
-       <property name="text">
-        <string>🖉</string>
-       </property>
-      </widget>
-     </item>
-     <item row="10" column="2">
-      <widget class="QToolButton" name="button_edit_time_2">
-       <property name="minimumSize">
-        <size>
-         <width>70</width>
-         <height>70</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QToolButton#button_edit_time_2 {
-   font-size: 40px;
-  background-color: rgb(255, 74, 74);
-  border-radius: 35px;
-  color: white;
-}
-QToolButton#button_edit_time_2 {
 	font-size: 40px;
   background-color: rgb(255, 50, 50);
   border-radius: 35px;
@@ -301,6 +274,39 @@ QToolButton#success_button:hover {
    </property>
    <property name="text">
     <string>เสร็จสิ้น</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="add_time_button">
+   <property name="geometry">
+    <rect>
+     <x>930</x>
+     <y>20</y>
+     <width>70</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>70</width>
+     <height>70</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton#add_time_button {
+   font-size: 40px;
+	background-color:#24BD73;
+  border-radius: 35px;
+  color: white;
+}
+QToolButton#add_time_button {
+	font-size: 40px;
+	background-color:#24BD73;
+  border-radius: 35px;
+  color: white;
+}</string>
+   </property>
+   <property name="text">
+    <string>+</string>
    </property>
   </widget>
  </widget>
