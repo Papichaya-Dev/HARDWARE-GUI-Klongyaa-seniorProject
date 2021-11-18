@@ -192,8 +192,15 @@ class AddSummaryTimeScreen(QDialog):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName("gridLayout")
-        
 
+        self.add_time_button = QtWidgets.QToolButton(background_confirm_times_to_take_pill)
+        self.add_time_button.setGeometry(QtCore.QRect(930, 20, 70, 70))
+        self.add_time_button.setMinimumSize(QtCore.QSize(70, 70))
+        self.add_time_button.setStyleSheet("QToolButton#add_time_button {\n""   font-size: 40px;\n""    background-color:#24BD73;\n""  border-radius: 35px;\n""  color: white;\n""}\n""QToolButton#add_time_button {\n""    font-size: 40px;\n""    background-color:#24BD73;\n""  border-radius: 35px;\n""  color: white;\n""}")
+        self.add_time_button.setText("+")
+        self.add_time_button.clicked.connect(self.goToInputTimeToTakePillScreen)
+        self.add_time_button.setObjectName("add_time_button")
+        
         for idx, time in enumerate(self.timesToTakesPillArr) :
             objIndex = self.timesToTakesPillArr.index(time)
 
@@ -234,14 +241,6 @@ class AddSummaryTimeScreen(QDialog):
             timeToTakePillEditButton.setText( "🖉")
             self.gridLayout.addWidget(timeToTakePillEditButton, 9+objIndex, 2, 1, 1)
 
-            if objIndex + 1 == len(self.timesToTakesPillArr) :
-                timeToTakePillAddButton = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
-                timeToTakePillAddButton.setMinimumSize(QtCore.QSize(70, 70))
-                timeToTakePillAddButton.setStyleSheet("QToolButton#add_time_button {\n""   font-size: 40px;\n""    background-color:#24BD73;\n""  border-radius: 35px;\n""  color: white;\n""}\n""QToolButton#add_time_button {\n""    font-size: 40px;\n""    background-color:#24BD73;\n""  border-radius: 35px;\n""  color: white;\n""}")
-                timeToTakePillAddButton.setText("+")
-                timeToTakePillAddButton.clicked.connect(self.goToInputTimeToTakePillScreen)
-                timeToTakePillAddButton.setObjectName("add_time_button")
-                self.gridLayout.addWidget(timeToTakePillAddButton, 9+objIndex, 3, 1, 1)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.success_button = QtWidgets.QToolButton(background_confirm_times_to_take_pill)
