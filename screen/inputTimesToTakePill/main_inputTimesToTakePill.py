@@ -199,7 +199,7 @@ class AddSummaryTimeScreen(QDialog):
 
             timeToTakePillData = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             timeToTakePillData.setStyleSheet("font: 75 34pt \"JasmineUPC\";\n""color: #070021;\n""")
-            timeToTakePillData.setText(time)
+            timeToTakePillData.setText(time + " น.")
             timeToTakePillData.setObjectName("show_time_" + str(objIndex))
             self.gridLayout.addWidget(timeToTakePillData, 9+objIndex, 1, 1, 1)
 
