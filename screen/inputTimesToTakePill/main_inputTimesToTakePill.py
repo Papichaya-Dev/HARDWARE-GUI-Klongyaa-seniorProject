@@ -10,16 +10,13 @@ from screen.pillSummaryScreen.main_pillSummaryScreen import PillSummaryScreen
 import __main__
 
 globalTimesToTakePillArr = []
-mockTime = 12
 globalPillData = {}
 
 def resetGlobalData() :
     global globalPillData
     global globalTimesToTakePillArr
-    global mockTime
 
     globalTimesToTakePillArr = []
-    mockTime = 12
     globalPillData = {}
 
 class InputTimeToTakePillScreen(QDialog):
@@ -120,35 +117,52 @@ class LoadingVoiceScreen(QDialog):
         self.label_voice_gif.setText(_translate("background_voice_loading", "sound loading gif"))
         self.text_of_waiting_process.setText(_translate("background_voice_loading", "ระบบกำลังประมวลผล โปรดรอสักครู่"))
 
+        voiceInput = __main__.speech_recog_function()
+
         #================ set voice loading gif ====================#
         self.movie = QMovie('shared/images/sound.gif')
         self.label_voice_gif.setMovie(self.movie)
         #================ set delay 2 second ====================#
         timer = QTimer(self)
         self.startAnimation()
-        timer.singleShot(2000, self.stopAnimation)
+        timer.singleShot(2000, lambda: self.stopAnimation(voiceInput))
         self.show()
 
     def startAnimation(self):
         self.movie.start()
 
-    def stopAnimation(self):
+    def stopAnimation(self, timeToTakeVoiceInput):
         self.movie.stop()
         self.close()
         #================ go to add summary time screen ====================#
-        global mockTime
         global globalTimesToTakePillArr
 
-        mockTime = mockTime + 1
+        correctInput = True
 
-        if self.editIndex == -1 :
-            globalTimesToTakePillArr.append(str(mockTime) + ".00")
+        if timeToTakeVoiceInput == "เที่ยง" :
+            timeToTakeVoiceInput = "12.00"
+        elif timeToTakeVoiceInput == "เที่ยงคืน" :
+            timeToTakeVoiceInput = "00.00"
+        elif timeToTakeVoiceInput.endswith('โมง'):
+            numericTime = int(timeToTakeVoiceInput.split(' ')[0]) + 12
+            timeToTakeVoiceInput = str(numericTime) + ".00"
+        elif timeToTakeVoiceInput.endswith(' น') :
+            timeToTakeVoiceInput = timeToTakeVoiceInput.split(' ')[0]
         else :
-            globalTimesToTakePillArr[self.editIndex] = (str(mockTime) + ".00")
+            correctInput = False
 
-        add_summary_time_screen = AddSummaryTimeScreen()
-        __main__.widget.addWidget( add_summary_time_screen)
-        __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
+        if correctInput :
+            if self.editIndex == -1 :
+                globalTimesToTakePillArr.append(timeToTakeVoiceInput)
+            else :
+                globalTimesToTakePillArr[self.editIndex] = timeToTakeVoiceInput
+
+            add_summary_time_screen = AddSummaryTimeScreen()
+            __main__.widget.addWidget( add_summary_time_screen)
+            __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
+        else :
+            __main__.widget.removeWidget(self)
+            __main__.widget.setCurrentIndex(__main__.widget.currentIndex())
 
 
 class AddSummaryTimeScreen(QDialog):
