@@ -8,6 +8,7 @@ from screen.inputPillNameScreen.gen.gen_voice_loading_screen import *
 from screen.inputPillNameScreen.gen.gen_input_voice_screen_again import *
 from screen.pillSummaryScreen.main_pillSummaryScreen import PillSummaryScreen
 import __main__
+from datetime import datetime
 
 globalTimesToTakePillArr = []
 globalPillData = {}
@@ -131,31 +132,43 @@ class LoadingVoiceScreen(QDialog):
     def startAnimation(self):
         self.movie.start()
 
-    def stopAnimation(self, timeToTakeVoiceInput):
+    def stopAnimation(self, voiceInput):
         self.movie.stop()
         self.close()
         #================ go to add summary time screen ====================#
         global globalTimesToTakePillArr
 
         correctInput = True
+        
+        if '.' in voiceInput :
+            voiceInput = voiceInput.replace('.', ':')
 
-        if timeToTakeVoiceInput == "เที่ยง" :
-            timeToTakeVoiceInput = "12.00"
-        elif timeToTakeVoiceInput == "เที่ยงคืน" :
-            timeToTakeVoiceInput = "00.00"
-        elif timeToTakeVoiceInput.endswith('โมง'):
-            numericTime = int(timeToTakeVoiceInput.split(' ')[0]) + 12
-            timeToTakeVoiceInput = str(numericTime) + ".00"
-        elif timeToTakeVoiceInput.endswith(' น') :
-            timeToTakeVoiceInput = timeToTakeVoiceInput.split(' ')[0]
+        if len(voiceInput.split(':')[0]) == 1:
+            voiceInput = "0" + voiceInput
+
+        if voiceInput == "เที่ยง" :
+            voiceInput = "12:00"
+        elif voiceInput == "เที่ยงคืน" or voiceInput == "24:00":
+            voiceInput = "00:00"
+        elif voiceInput.endswith('โมง'):
+            if voiceInput.split(' ')[0] == 'บ่าย' : 
+                voiceInput = "13:00"
+            else :
+                numericTime = int(voiceInput.split(' ')[0]) + 12
+                voiceInput = str(numericTime) + ":00"
+        elif voiceInput.endswith(' น') :
+            voiceInput = voiceInput.split(' ')[0]
         else :
             correctInput = False
-
+            
         if correctInput :
             if self.editIndex == -1 :
-                globalTimesToTakePillArr.append(timeToTakeVoiceInput)
+                globalTimesToTakePillArr.append(voiceInput)
             else :
-                globalTimesToTakePillArr[self.editIndex] = timeToTakeVoiceInput
+                globalTimesToTakePillArr[self.editIndex] = voiceInput
+
+            # Sorting Time
+            globalTimesToTakePillArr.sort(key=lambda time: datetime.strptime(time, "%H:%M"))
 
             add_summary_time_screen = AddSummaryTimeScreen()
             __main__.widget.addWidget( add_summary_time_screen)
