@@ -2,9 +2,19 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QStackedWidget
 from shared.data.mock.pill_channel_datas import pill_channel_datas
+import speech_recognition as sr
 
 # Screen UI
 from screen.homeScreen.main_homeScreen import HomeScreen
+
+def speech_recog_function():
+    mic = sr.Microphone(1)
+    recog = sr.Recognizer()
+
+    with mic as source :
+        audio = recog.listen(source)
+        text = recog.recognize_google(audio, language="th")
+    return text
 
 if __name__ == "__main__":
      app = QApplication(sys.argv)

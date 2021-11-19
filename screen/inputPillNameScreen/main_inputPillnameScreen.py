@@ -10,16 +10,13 @@ from screen.totalPillsNPillPerTimeScreen.main_totalPillsNPertimeScreen import *
 import __main__
 
 globalInputPillName = ""
-mockNum = 0
 globalPillData = {}
 
 def resetGlobalData() :
     global globalPillData
     global globalInputPillName
-    global mockNum
 
     globalInputPillName = ""
-    mockNum = 0
     globalPillData = {}
 
 class InputPillNameScreen(QDialog):
@@ -137,26 +134,27 @@ class LoadingVoiceScreen(QDialog):
         self.label_voice_gif.setText(_translate("background_voice_loading", "sound loading gif"))
         self.text_of_waiting_process.setText(_translate("background_voice_loading", "ระบบกำลังประมวลผล โปรดรอสักครู่"))
 
+        voiceInput = __main__.speech_recog_function()
+
         #================ set voice loading gif ====================#
         self.movie = QMovie('shared/images/sound.gif')
         self.label_voice_gif.setMovie(self.movie)
         #================ set delay 2 second ====================#
         timer = QTimer(self)
         self.startAnimation()
-        timer.singleShot(2000, self.stopAnimation)
+        timer.singleShot(2000, lambda: self.stopAnimation(voiceInput))
         self.show()
 
     def startAnimation(self):
         self.movie.start()
 
-    def stopAnimation(self):
+    def stopAnimation(self, pillNameVoiceInput):
+        
         self.movie.stop()
         self.close()
         #================ go to pill name screen ====================#
         global globalInputPillName
-        global mockNum
-        mockNum = mockNum + 1
-        globalInputPillName = "พาราเซตาม่อน " + str(mockNum)
+        globalInputPillName = pillNameVoiceInput
 
         confirm_pill_name_screen = ConfirmPillNameScreen(globalInputPillName)
         __main__.widget.removeWidget(self)
