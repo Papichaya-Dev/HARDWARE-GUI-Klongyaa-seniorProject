@@ -2,6 +2,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QStackedWidget
 from shared.data.mock.pill_channel_datas import pill_channel_datas
+from shared.data.mock.config import config
 import speech_recognition as sr
 
 # Screen UI
@@ -18,7 +19,7 @@ def speech_recog_function():
 
 if __name__ == "__main__":
      app = QApplication(sys.argv)
-     screen = HomeScreen(pill_channel_datas)
+     screen = HomeScreen(pill_channel_datas, config)
      widget = QStackedWidget()
      widget.setWindowTitle("GUI - KLONG_YAA")
      widget.addWidget(screen)

@@ -6,12 +6,14 @@ from screen.pillDetailScreen.main_detail_screen import DetailScreen
 from functools import partial
 
 class HomeScreen(QDialog):
-    def __init__(self, pill_channel_datas):
+    def __init__(self, pill_channel_datas, config):
         super().__init__()
         self.pill_channel_datas = pill_channel_datas
+        self.config = config
         self.setupUi(self)
     
     def setupUi(self, UIHomeScreen):
+        pill_channel_buttons = []
         pill_channel_datas = self.pill_channel_datas
         width_height_of_channel = [
             [0, 0, 510, 200],
@@ -49,12 +51,42 @@ class HomeScreen(QDialog):
                 channel_text = "ช่องที่ " + str(index + 1) + " \n" + self.pill_channel_datas[str(index)]["name"]
                 pill_channel_btn.setText(channel_text)
                 pill_channel_btn.setStyleSheet("background-color : #F8F37D")
-                continue
+            else :
+                # If don't have data in that slot
+                pill_channel_btn.setStyleSheet("background-color : #97C7F9")
+                pill_channel_btn.setIcon(QtGui.QIcon('shared\images\plus_logo.png'))
+                pill_channel_btn.setIconSize(QtCore.QSize(40, 40))
 
-            # If don't have data in that slot
-            pill_channel_btn.setStyleSheet("background-color : #97C7F9")
-            pill_channel_btn.setIcon(QtGui.QIcon('shared\images\plus_logo.png'))
-            pill_channel_btn.setIconSize(QtCore.QSize(40, 40))
+            pill_channel_buttons.append(pill_channel_btn)
+        print(self.config["isFirstUse"] )
+        if self.config["isFirstUse"] :
+            self.frame = QtWidgets.QFrame(UIHomeScreen)
+            self.frame.setGeometry(QtCore.QRect(30, 20, 961, 551))
+            self.frame.setStyleSheet("background-color: white; border-radius: 20px")
+            self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+            self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+            self.frame.setObjectName("frame")
+
+            self.frame_2 = QtWidgets.QFrame(UIHomeScreen)
+            self.frame_2.setGeometry(QtCore.QRect(0, 0, 1020, 600))
+            self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+            self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+            self.frame_2.setObjectName("frame_2")
+
+            self.label = QtWidgets.QLabel(self.frame_2)
+            self.label.setGeometry(QtCore.QRect(80, 240, 321, 81))
+            font = QtGui.QFont()
+            font.setPointSize(26)
+            self.label.setFont(font)
+            self.label.setObjectName("label")
+            self.label.setText("1. กดไปที่ช่องที่ 1")
+
+            for i in range(6, 0, -1) :
+                pill_channel_buttons[i].raise_()
+
+            self.frame.raise_()
+            self.frame_2.raise_()
+            pill_channel_buttons[0].raise_()
 
         self.retranslateUi(UIHomeScreen)
         QtCore.QMetaObject.connectSlotsByName(UIHomeScreen)
