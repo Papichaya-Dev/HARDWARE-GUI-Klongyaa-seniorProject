@@ -1,6 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QLabel
-from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtWidgets import QDialog
+from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QMovie
 from PyQt5 import QtCore, QtGui, QtWidgets 
 from screen.inputPillNameScreen.gen.gen_input_voice_screen import *
@@ -9,6 +9,7 @@ from screen.inputPillNameScreen.gen.gen_input_voice_screen_again import *
 from screen.pillSummaryScreen.main_pillSummaryScreen import PillSummaryScreen
 import __main__
 from datetime import datetime
+from functools import partial
 
 globalTimesToTakePillArr = []
 globalPillData = {}
@@ -250,20 +251,8 @@ class AddSummaryTimeScreen(QDialog):
             timeToTakePillEditButton.setMinimumSize(QtCore.QSize(70, 70))
             timeToTakePillEditButton.setStyleSheet("font-size: 40px; background-color: rgb(255, 74, 74); border-radius: 35px; color: white;")
             timeToTakePillEditButton.setObjectName("button_edit_time_" + str(objIndex))
-
-            # Max 5
-            if idx == 0 :
-                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(0))
-            elif idx == 1 :
-                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(1))
-            elif idx == 2 :
-                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(2))
-            elif idx == 3 :
-                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(3))
-            elif idx == 4 :
-                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(4))
-            else :
-                timeToTakePillEditButton.clicked.connect(lambda: self.editTimeToTakePill(5))
+            
+            timeToTakePillEditButton.clicked.connect(partial(self.editTimeToTakePill, idx))
 
             timeToTakePillEditButton.setText( "🖉")
             self.gridLayout.addWidget(timeToTakePillEditButton, 9+objIndex, 2, 1, 1)
