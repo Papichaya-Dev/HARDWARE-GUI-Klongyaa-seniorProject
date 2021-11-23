@@ -1,3 +1,3 @@
 config = {
-    "isFirstUse": True
+    "isFirstUse": False
 }
