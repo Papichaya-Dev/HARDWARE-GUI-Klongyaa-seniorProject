@@ -134,7 +134,8 @@ class LoadingVoiceScreen(QDialog):
         self.label_voice_gif.setText(_translate("background_voice_loading", "sound loading gif"))
         self.text_of_waiting_process.setText(_translate("background_voice_loading", "ระบบกำลังประมวลผล โปรดรอสักครู่"))
 
-        voiceInput = __main__.speech_recog_function()
+        # voiceInput = __main__.speech_recog_function()
+        voiceInput = "เทสชื่อยา"
 
         #================ set voice loading gif ====================#
         self.movie = QMovie('shared/images/sound.gif')
