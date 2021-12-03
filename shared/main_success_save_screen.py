@@ -23,8 +23,13 @@ class SuccessSaveScreen(QDialog):
         channelID = self.pillData["id"]
         allPillDatas = __main__.pill_channel_datas
         allPillDatas[str(channelID)] = self.pillData
+        config = __main__.config
+
+        if config["isFirstUse"] :
+            config["isFirstUse"] = False
+            
         __main__.widget.removeWidget(self)
-        __main__.widget.addWidget(__main__.HomeScreen(allPillDatas))
+        __main__.widget.addWidget(__main__.HomeScreen(allPillDatas, config))
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
     def setupUi(self, background_success_save_screen):

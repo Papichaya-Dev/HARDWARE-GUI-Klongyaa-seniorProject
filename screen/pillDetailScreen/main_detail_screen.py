@@ -215,7 +215,7 @@ class DetailScreen(QtWidgets.QDialog):
 
     def goBack(self) :
         __main__.widget.removeWidget(self)
-        __main__.widget.addWidget(__main__.HomeScreen(__main__.pill_channel_datas))
+        __main__.widget.addWidget(__main__.HomeScreen(__main__.pill_channel_datas, __main__.config))
         __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
 
 if __name__ == "__main__":
