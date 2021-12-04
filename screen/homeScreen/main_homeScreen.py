@@ -158,13 +158,21 @@ class HomeScreen(QDialog):
             if len(pill_channel_data) != 0 :
                 for time in pill_channel_data['timeToTake'] :
                     now = datetime.now()
+
+                    if time.split(":")[0] == "00" :
+                        now += timedelta(days=1)
+
                     nowDate = now.strftime("%Y-%m-%d")
                     takePillDateTime = nowDate + " " + time
                     timeObject = datetime.strptime(takePillDateTime, '%Y-%m-%d %H:%M')
                     stringCompareTime = str(timeObject - now)
+
+                    # if time to take is not already past
                     if not stringCompareTime.startswith('-1') :
                         willTakeMinute = int(stringCompareTime.split(':')[1])
                         willTakeHour = int(stringCompareTime.split(':')[0])
+
+                        # if time to take is in 10 minute or less that 10 minute
                         if willTakeMinute <= 10 and willTakeMinute >= 0 and willTakeHour == 0 :
                             alreadyTakeFlag = False
                             haveItemFlag = False
@@ -174,6 +182,7 @@ class HomeScreen(QDialog):
                                 if item["id"] == index and item["isTaken"] :
                                     alreadyTakeFlag = True
                             
+                            # If not have item in haveToTake list
                             if not haveItemFlag :
                                 takeTimeData = {
                                     "id": index,
@@ -182,6 +191,7 @@ class HomeScreen(QDialog):
                                 }
                                 __main__.haveToTake.append(takeTimeData)
 
+                            # If user are not already take that pill
                             if not alreadyTakeFlag :
                                 pill_channel_btn.setStyleSheet("background-color : #F8F37D")
                                 channel_text = "ช่องที่ " + str(index + 1) + " \n" + pill_channel_data["name"] + " \n" + str(pill_channel_data["pillsPerTime"]) + " เม็ด"
@@ -190,17 +200,36 @@ class HomeScreen(QDialog):
                                 pill_channel_btn.setStyleSheet("background-color : #FBFADD")
                                 pill_channel_btn.setText("")
                         else :
-                            pill_channel_btn.setStyleSheet("background-color : #FBFADD")
-                            pill_channel_btn.setText("")
+                            haveItemFlag = False
+                            for item in __main__.haveToTake :
+                                if item["id"] == index:
+                                    haveItemFlag = True
+                            if not haveItemFlag :
+                                pill_channel_btn.setStyleSheet("background-color : #FBFADD")
+                                pill_channel_btn.setText("")
                     else :
+                        # check that it have item in haveToTake pill list that not taken
                         flag = 0
                         for item in __main__.haveToTake :
                             if item["id"] == index and not item["isTaken"]:
                                 flag = 1
+
                         if flag == 1 :
                             for item in __main__.haveToTake :
                                 if item["id"] == index :
                                     __main__.haveToTake.remove(item)
+
+                        data = {
+                            "id": index,
+                            "time": time,
+                            "isTaken": True
+                        }
+
+                        # If time to take is already pass and you already take pill remove that data from haveToTake list
+                        if data in __main__.haveToTake:
+                            __main__.haveToTake.remove(data)
+
+
                         pill_channel_btn.setStyleSheet("background-color : #FBFADD")
                         pill_channel_btn.setText("")
 
@@ -208,7 +237,8 @@ class HomeScreen(QDialog):
         for item in __main__.haveToTake :
             if item["isTaken"] == False:
                 flag = 1
-
+        print(n)
+        print(__main__.haveToTake)
         if len(__main__.haveToTake) != 0 and flag == 1 :
             for index in range(7) :
                 pill_channel_btn = pill_channel_buttons[index]
