@@ -9,15 +9,15 @@ from PyQt5.QtCore import QObject, QThread, pyqtSignal
 from time import sleep
 from datetime import datetime, timedelta
 
-isPickPill = False
+isChangePage = False
 
 class HomeScreen(QDialog):
     def __init__(self, pill_channel_datas, config):
         super().__init__()
         self.pill_channel_datas = pill_channel_datas
         self.config = config
-        global isPickPill
-        isPickPill = False
+        global isChangePage
+        isChangePage = False
         self.setupUi(self)
     
     def setupUi(self, UIHomeScreen):
@@ -100,8 +100,8 @@ class HomeScreen(QDialog):
         self.checkTakePillThread(pill_channel_buttons, pill_channel_datas)
 
     def gotoPillDetailScreen(self, channelID, pill_channel_data):
-        global isPickPill
-        isPickPill = True
+        global isChangePage
+        isChangePage = True
 
         if len(pill_channel_data) != 0 :
             pillThatHaveToTakeFlag = 0
@@ -286,7 +286,7 @@ class Worker(QObject):
             if not isFirstLoop:
                 sleep(1)
             isFirstLoop = False
-            if isPickPill : break
+            if isChangePage : break
             self.progress.emit(num + 1)
             num += 1
         self.finished.emit()
