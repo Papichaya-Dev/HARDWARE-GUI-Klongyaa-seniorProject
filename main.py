@@ -8,6 +8,8 @@ import speech_recognition as sr
 # Screen UI
 from screen.homeScreen.main_homeScreen import HomeScreen
 
+haveToTake = []
+
 def speech_recog_function():
     mic = sr.Microphone(1)
     recog = sr.Recognizer()
