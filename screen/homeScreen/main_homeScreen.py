@@ -5,11 +5,30 @@ from screen.inputPillNameScreen.main_inputPillnameScreen import InputPillNameScr
 from screen.pillDetailScreen.main_detail_screen import DetailScreen
 from functools import partial
 
+from PyQt5.QtCore import QObject, QThread, pyqtSignal
+from PyQt5.QtWidgets import QMainWindow
+import sys
+from time import sleep
+from datetime import datetime, timedelta
+
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (
+    QApplication,
+    QLabel,
+    QPushButton,
+    QVBoxLayout,
+    QWidget,
+)
+
+isPickPill = False
+
 class HomeScreen(QDialog):
     def __init__(self, pill_channel_datas, config):
         super().__init__()
         self.pill_channel_datas = pill_channel_datas
         self.config = config
+        global isPickPill
+        isPickPill = False
         self.setupUi(self)
     
     def setupUi(self, UIHomeScreen):
@@ -31,7 +50,7 @@ class HomeScreen(QDialog):
         for index in range(7) :
             pill_channel_btn = QtWidgets.QPushButton(
                 UIHomeScreen, 
-                clicked = partial(gotoPillDetailScreen, index, pill_channel_datas[str(index)])
+                clicked = partial(self.gotoPillDetailScreen, index, pill_channel_datas[str(index)])
             )   
 
             pill_channel_btn.setGeometry(QtCore.QRect(
@@ -58,7 +77,7 @@ class HomeScreen(QDialog):
                 pill_channel_btn.setIconSize(QtCore.QSize(40, 40))
 
             pill_channel_buttons.append(pill_channel_btn)
-        print(self.config["isFirstUse"] )
+
         if self.config["isFirstUse"] :
             self.frame = QtWidgets.QFrame(UIHomeScreen)
             self.frame.setGeometry(QtCore.QRect(30, 20, 961, 551))
@@ -88,28 +107,85 @@ class HomeScreen(QDialog):
             self.frame_2.raise_()
             pill_channel_buttons[0].raise_()
 
-        self.retranslateUi(UIHomeScreen)
-        QtCore.QMetaObject.connectSlotsByName(UIHomeScreen)
+        self.checkTakePillThread(pill_channel_buttons, pill_channel_datas)
 
-    def retranslateUi(self, UIHomeScreen):
-        _translate = QtCore.QCoreApplication.translate
-        UIHomeScreen.setWindowTitle(_translate("UIHomeScreen", "Dialog"))
+    def gotoPillDetailScreen(self, channelID, pill_channel_data):
+        if len(pill_channel_data) != 0 :
+            # Change screen to pill detail screen
+            detailScreen = DetailScreen(pill_channel_data)
+            __main__.widget.addWidget(detailScreen)
+            __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
+        else :
+            pillData = {
+                "id" : channelID,
+                "name": "",
+                "totalPills": -1,
+                "pillsPerTime": -1,
+                "timeToTake": []
+            }
+            voiceInputScreen = InputPillNameScreen(pillData)
+            __main__.widget.addWidget(voiceInputScreen)
+            __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
+    
+        global isPickPill
+        isPickPill = True
 
-def gotoPillDetailScreen(channelID, pill_channel_data):
-    if len(pill_channel_data) != 0 :
-        # Change screen to pill detail screen
-        detailScreen = DetailScreen(pill_channel_data)
-        __main__.widget.addWidget(detailScreen)
-        __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
-    else :
-        pillData = {
-            "id" : channelID,
-            "name": "",
-            "totalPills": -1,
-            "pillsPerTime": -1,
-            "timeToTake": []
-        }
-        voiceInputScreen = InputPillNameScreen(pillData)
-        __main__.widget.addWidget(voiceInputScreen)
-        __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
+    def printText(self, n, pill_channel_buttons, pill_channel_datas) :
+        print(n)
+        for index in range(7) :
+            pill_channel_btn = pill_channel_buttons[index]
+            pill_channel_data = pill_channel_datas[str(index)]
+
+            # If have data in that slot
+            if len(pill_channel_data) != 0 :
+                for time in pill_channel_data['timeToTake'] :
+                    now = datetime.now()
+                    nowDate = now.strftime("%Y-%m-%d")
+                    takePillDateTime = nowDate + " " + time
+                    timeObject = datetime.strptime(takePillDateTime, '%Y-%m-%d %H:%M')
+                    stringCompareTime = str(timeObject - now)
+                    if not stringCompareTime.startswith('-1') :
+                        willTakeMinute = int(stringCompareTime.split(':')[1])
+                        if willTakeMinute <= 10 and willTakeMinute >= 0 :
+                            pill_channel_btn.setStyleSheet("background-color : red")
+
+            
+
+    def checkTakePillThread(self, pill_channel_buttons, pill_channel_datas):
+        # Step 2: Create a QThread object
+        self.thread = QThread()
+        # Step 3: Create a worker object
+        self.worker = Worker()
+        # Step 4: Move worker to the thread
+        self.worker.moveToThread(self.thread)
+        # Step 5: Connect signals and slots
+        self.thread.started.connect(self.worker.run)
+        self.worker.finished.connect(self.thread.quit)
+        self.worker.finished.connect(self.worker.deleteLater)
+        self.thread.finished.connect(self.thread.deleteLater)
+        self.worker.progress.connect(lambda n : self.printText(n, pill_channel_buttons, pill_channel_datas))
+        # Step 6: Start the thread
+        self.thread.start()
+
+        # Final resets
+        # self.longRunningBtn.setEnabled(False)
+        # self.thread.finished.connect(
+        #     lambda: self.longRunningBtn.setEnabled(True)
+        # )
+        # self.thread.finished.connect(
+        #     lambda: self.stepLabel.setText("Long-Running Step: 0")
+        # )
+
+class Worker(QObject):
+    finished = pyqtSignal()
+    progress = pyqtSignal(int)
+
+    def run(self):
+        num = 0
+        while True :
+            if isPickPill : break
+            sleep(1)
+            self.progress.emit(num + 1)
+            num += 1
+        self.finished.emit()
     
