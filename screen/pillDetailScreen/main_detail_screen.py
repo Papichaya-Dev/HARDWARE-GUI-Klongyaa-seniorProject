@@ -114,6 +114,8 @@ class DetailScreen(QtWidgets.QDialog):
         self.label_pill_name.setObjectName("label_pill_name")
         self.gridLayout_2.addWidget(self.label_pill_name, 0, 0, 1, 1)
 
+        #---------------------------------------------------------------------------------------#
+        #------------------------- SHOW TIME USE FOR LOOP ---------------------------------------#
         for time in self.pill_channel_data["timeToTake"] :
             timeIndex = self.pill_channel_data["timeToTake"].index(time)
 
@@ -135,6 +137,25 @@ class DetailScreen(QtWidgets.QDialog):
             timeToTakeData.setStyleSheet("font: 75 34pt \"JasmineUPC\";\n" "color: #070021;\n" "")
             timeToTakeData.setObjectName(timeToTakeDataObjectName)
             self.gridLayout_2.addWidget(timeToTakeData, timeIndex + 12, 1, 1, 1)
+            #--------------- CREATE BUTTON FAKE -------------------------------------------#
+            button_fake = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
+            button_fake.setMinimumSize(QtCore.QSize(70, 70))
+            button_fake.setStyleSheet("QToolButton#button_fake {\n"
+"   font-size: 40px;\n"
+"  background-color:rgb(156, 183, 255);\n"
+"  border-radius: 35px;\n"
+"  color: white;\n"
+"}\n"
+"QToolButton#button_fake :hover {\n"
+" font-size: 40px;\n"
+" background-color:rgb(156, 183, 255);\n"
+"  border-radius:35px;\n"
+"  color: white;\n"
+"}")
+            button_fake.setText("")
+            button_fake.setObjectName("button_fake")
+            self.gridLayout_2.addWidget(button_fake, timeIndex + 12, 2, 1, 1)
+
         
         self.data_pill_name = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.data_pill_name.setEnabled(True)
@@ -213,6 +234,7 @@ class DetailScreen(QtWidgets.QDialog):
         self.button_fake_3.setText("")
         self.button_fake_3.setObjectName("button_fake_3")
         self.gridLayout_2.addWidget(self.button_fake_3, 8, 2, 1, 1)
+
         self.button_fake_4 = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
         self.button_fake_4.setMinimumSize(QtCore.QSize(70, 70))
         self.button_fake_4.setStyleSheet("QToolButton#button_fake_4  {\n"
@@ -230,6 +252,7 @@ class DetailScreen(QtWidgets.QDialog):
         self.button_fake_4.setText("")
         self.button_fake_4.setObjectName("button_fake_4")
         self.gridLayout_2.addWidget(self.button_fake_4, 12, 2, 1, 1)
+        
         self.scroll_area.setWidget(self.scrollAreaWidgetContents)
         self.button_go_back = QtWidgets.QToolButton(background_detail_screen,clicked = lambda:self.goBack())
         self.button_go_back.setGeometry(QtCore.QRect(240, 490, 221, 91))
