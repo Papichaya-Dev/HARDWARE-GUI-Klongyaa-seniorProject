@@ -115,25 +115,39 @@ class HomeScreen(QDialog):
         isPickPill = True
 
         if len(pill_channel_data) != 0 :
+            pillThatHaveToTakeFlag = 0
+            takeEveryPillFlag = 0
+
             for index, item in enumerate(__main__.haveToTake) :
                 if item["id"] == channelID :
+                    pillThatHaveToTakeFlag = 1
                     __main__.haveToTake[index]["isTaken"] = True
 
-            # Change screen to pill detail screen
-            detailScreen = DetailScreen(pill_channel_data)
-            __main__.widget.addWidget(detailScreen)
-            __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
+                if item["isTaken"] == False :
+                    takeEveryPillFlag = 1
+
+            if pillThatHaveToTakeFlag == 1 or takeEveryPillFlag == 0:
+                # Change screen to pill detail screen
+                detailScreen = DetailScreen(pill_channel_data)
+                __main__.widget.addWidget(detailScreen)
+                __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
         else :
-            pillData = {
-                "id" : channelID,
-                "name": "",
-                "totalPills": -1,
-                "pillsPerTime": -1,
-                "timeToTake": []
-            }
-            voiceInputScreen = InputPillNameScreen(pillData)
-            __main__.widget.addWidget(voiceInputScreen)
-            __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
+            flag = 0
+            for item in __main__.haveToTake :
+                if item["isTaken"] == False :
+                    flag = 1
+            
+            if flag == 0:
+                pillData = {
+                    "id" : channelID,
+                    "name": "",
+                    "totalPills": -1,
+                    "pillsPerTime": -1,
+                    "timeToTake": []
+                }
+                voiceInputScreen = InputPillNameScreen(pillData)
+                __main__.widget.addWidget(voiceInputScreen)
+                __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
 
     def checkTakePill(self, n, pill_channel_buttons, pill_channel_datas) :
         for index in range(7) :
@@ -176,9 +190,6 @@ class HomeScreen(QDialog):
                                 pill_channel_btn.setStyleSheet("background-color : #FBFADD")
                                 pill_channel_btn.setText("")
                         else :
-                            for item in __main__.haveToTake :
-                                if item["id"] == index :
-                                    __main__.haveToTake.remove(item)
                             pill_channel_btn.setStyleSheet("background-color : #FBFADD")
                             pill_channel_btn.setText("")
                     else :
