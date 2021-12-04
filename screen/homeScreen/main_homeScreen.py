@@ -6,19 +6,8 @@ from screen.pillDetailScreen.main_detail_screen import DetailScreen
 from functools import partial
 
 from PyQt5.QtCore import QObject, QThread, pyqtSignal
-from PyQt5.QtWidgets import QMainWindow
-import sys
 from time import sleep
 from datetime import datetime, timedelta
-
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import (
-    QApplication,
-    QLabel,
-    QPushButton,
-    QVBoxLayout,
-    QWidget,
-)
 
 isPickPill = False
 
@@ -237,8 +226,7 @@ class HomeScreen(QDialog):
         for item in __main__.haveToTake :
             if item["isTaken"] == False:
                 flag = 1
-        print(n)
-        print(__main__.haveToTake)
+
         if len(__main__.haveToTake) != 0 and flag == 1 :
             for index in range(7) :
                 pill_channel_btn = pill_channel_buttons[index]
@@ -284,14 +272,6 @@ class HomeScreen(QDialog):
         self.worker.progress.connect(lambda n : self.checkTakePill(n, pill_channel_buttons, pill_channel_datas))
         # Step 6: Start the thread
         self.thread.start()
-
-        # Final resets
-        # self.longRunningBtn.setEnabled(False)
-        # self.thread.finished.connect(
-        #     lambda: self.longRunningBtn.setEnabled(True)
-        # )
-        # self.thread.finished.connect(
-        #     lambda: self.stepLabel.setText("Long-Running Step: 0")
         # )
 isFirstLoop = True
 
