@@ -62,9 +62,9 @@ class HomeScreen(QDialog):
                 pill_channel_btn.setStyleSheet("background-color : #F8F37D")
             else :
                 # If don't have data in that slot
-                pill_channel_btn.setStyleSheet("background-color : #97C7F9")
-                pill_channel_btn.setIcon(QtGui.QIcon('shared\images\plus_logo.png'))
-                pill_channel_btn.setIconSize(QtCore.QSize(40, 40))
+                pill_channel_btn.setStyleSheet("background-color : #97C7F9 ")
+                pill_channel_btn.setIcon(QtGui.QIcon('shared\images\plus_icon.png'))
+                pill_channel_btn.setIconSize(QtCore.QSize(60, 60))
 
             pill_channel_buttons.append(pill_channel_btn)
 

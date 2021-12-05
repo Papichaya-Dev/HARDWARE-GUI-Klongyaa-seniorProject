@@ -21,6 +21,10 @@ def speech_recog_function():
 
 if __name__ == "__main__":
      app = QApplication(sys.argv)
+     defaultfont = QtGui.QFont('Arial', 8)
+     defaultfont.setPixelSize(8)
+     QtWidgets.QApplication.setStyle("Windows")
+     QtWidgets.QApplication.setFont(defaultfont)
      screen = HomeScreen(pill_channel_datas, config)
      widget = QStackedWidget()
      widget.setWindowTitle("GUI - KLONG_YAA")

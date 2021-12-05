@@ -194,7 +194,15 @@ class PillSummaryScreen(QDialog):
                 timeToTakePillData.setText(time + " น.")
                 timeToTakePillData.setObjectName("show_time")
                 self.gridLayout_2.addWidget(timeToTakePillData, (currentRow + objIndex), 1, 1, 1)
-
+                 #--------------- CREATE BUTTON FAKE EDIT -------------------------------------------#
+                button_fake_edit = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
+                button_fake_edit.setMinimumSize(QtCore.QSize(70, 70))
+                button_fake_edit.setStyleSheet("QToolButton#button_fake_edit {\n" " font-size: 40px;\n"
+"  background-color:rgb(156, 183, 255);\n"
+"  border-radius: 35px;\n"
+"  color: white;}")
+                button_fake_edit.setObjectName("button_fake_edit")
+                self.gridLayout_2.addWidget(button_fake_edit, currentRow, 2, 1, 1)
                 currentRow = currentRow + 1
 
         self.scroll_area.setWidget(self.scrollAreaWidgetContents)
