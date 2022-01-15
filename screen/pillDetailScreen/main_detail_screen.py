@@ -328,9 +328,17 @@ class DetailScreen(QtWidgets.QDialog):
 "    height: 70px;\n"
 "}")
         self.button_delete_pill_channel.setObjectName("button_delete_pill_channel")
+        self.button_delete_pill_channel.clicked.connect(self.deletePillData)
 
         self.retranslateUi(background_detail_screen)
         QtCore.QMetaObject.connectSlotsByName(background_detail_screen)
+
+    def deletePillData(self):
+        id = self.pill_channel_data["id"]
+        __main__.pill_channel_datas[str(id)] = {}
+        __main__.widget.removeWidget(self)
+        __main__.widget.addWidget(__main__.HomeScreen(__main__.pill_channel_datas, __main__.config))
+        __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)
 
     def retranslateUi(self, background_detail_screen):
         headerText = "ข้อมูลยาช่องที่ " + str(self.pill_channel_data["id"] + 1)

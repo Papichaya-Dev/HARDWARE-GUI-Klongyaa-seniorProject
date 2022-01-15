@@ -189,8 +189,6 @@ class LoadingVoiceScreen(QDialog):
 
 class AddSummaryTimeScreen(QDialog):
     def __init__(self, pillData):
-        print('wtfffffffffff: ')
-        print(pillData)
         super().__init__()
         global globalTimesToTakePillArr
         global globalPillData
@@ -203,7 +201,6 @@ class AddSummaryTimeScreen(QDialog):
 
 
     def setupUi(self, background_confirm_times_to_take_pill):
-        print("wtffffxxxsdd")
         background_confirm_times_to_take_pill.setObjectName("background_confirm_times_to_take_pill")
         background_confirm_times_to_take_pill.resize(1024, 600)
         background_confirm_times_to_take_pill.setStyleSheet("QWidget#background_confirm_times_to_take_pill{\n""background-color: #97C7F9}")
