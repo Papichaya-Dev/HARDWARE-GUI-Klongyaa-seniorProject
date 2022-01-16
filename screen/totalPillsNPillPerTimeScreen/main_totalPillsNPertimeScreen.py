@@ -3,7 +3,6 @@ from  screen.totalPillsNPillPerTimeScreen.gen.gen_total_pills_screen import *
 from screen.totalPillsNPillPerTimeScreen.gen.gen_amount_pill_per_time_screen import *
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QLabel
 from screen.totalPillsNPillPerTimeScreen.shared.gen_mock_screen import *
-from screen.inputTimesToTakePill.main_inputTimesToTakePill import *
 import __main__
 
 globalPillData = {}
@@ -233,7 +232,7 @@ class AmountPillPerTimeScreen(QDialog):
             globalPillData["pillsPerTime"] = self.amount_pill
             print(globalPillData)
 
-            input_times_to_take_pill_screen = InputTimeToTakePillScreen(globalPillData, -1)
+            input_times_to_take_pill_screen = __main__.InputTimeToTakePillScreen(globalPillData, -1, False)
             __main__.widget.removeWidget(self)
             __main__.widget.addWidget(input_times_to_take_pill_screen)
             __main__.widget.setCurrentIndex(__main__.widget.currentIndex()+1)

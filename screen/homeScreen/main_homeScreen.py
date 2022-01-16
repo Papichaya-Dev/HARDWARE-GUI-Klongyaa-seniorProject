@@ -254,7 +254,7 @@ class HomeScreen(QDialog):
                 else :
                     # If don't have data in that slot
                     pill_channel_btn.setStyleSheet("background-color : #97C7F9")
-                    pill_channel_btn.setIcon(QtGui.QIcon('shared\images\plus_logo.png'))
+                    pill_channel_btn.setIcon(QtGui.QIcon('shared\images\plus_icon.png'))
                     pill_channel_btn.setIconSize(QtCore.QSize(40, 40))
 
     def checkTakePillThread(self, pill_channel_buttons, pill_channel_datas):

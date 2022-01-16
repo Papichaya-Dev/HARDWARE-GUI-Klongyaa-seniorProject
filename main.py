@@ -4,6 +4,8 @@ from PyQt5.QtWidgets import QApplication, QStackedWidget
 from shared.data.mock.pill_channel_datas import pill_channel_datas
 from shared.data.mock.config import config
 import speech_recognition as sr
+from screen.pillSummaryScreen.main_pillSummaryScreen import PillSummaryScreen
+from screen.inputTimesToTakePill.main_inputTimesToTakePill import *
 
 # Screen UI
 from screen.homeScreen.main_homeScreen import HomeScreen
