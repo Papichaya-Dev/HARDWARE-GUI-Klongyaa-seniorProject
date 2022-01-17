@@ -38,7 +38,7 @@ pill_channel_datas = {
         "totalPills": 50,
         "pillsPerTime": 1,
         "timeToTake": [
-            "22:33",
+            "00:11",
         ]
     },
     "4" : {
