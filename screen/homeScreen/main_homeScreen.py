@@ -9,8 +9,27 @@ from PyQt5.QtCore import QObject, QThread, pyqtSignal
 from time import sleep
 from datetime import datetime, timedelta
 
-isChangePage = False
+import threading
+import time
+from pygame import mixer
 
+
+isChangePage = False
+mixer.init()
+sound_notification = mixer.Sound("screen\homeScreen\sound_notification.wav")
+print(sound_notification)
+ #---------------- Function play sound notification ----------------#
+def releaseCooldown():
+    global sound_cooldown
+    sound_cooldown = False
+
+def playSound():
+    sound_notification.play(time.daylight)
+    sound_cooldown = True
+    threading.Timer(2, releaseCooldown).start()
+
+def stopSound():
+    sound_notification.stop()
 class HomeScreen(QDialog):
     def __init__(self, pill_channel_datas, config):
         super().__init__()
@@ -138,6 +157,8 @@ class HomeScreen(QDialog):
                 __main__.widget.addWidget(voiceInputScreen)
                 __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
 
+
+
     def checkTakePill(self, n, pill_channel_buttons, pill_channel_datas) :
         for index in range(7) :
             pill_channel_btn = pill_channel_buttons[index]
@@ -181,13 +202,17 @@ class HomeScreen(QDialog):
                                 __main__.haveToTake.append(takeTimeData)
 
                             # If user are not already take that pill
+                            # ถ้ายังไม่ได้หยิบยา
                             if not alreadyTakeFlag :
+                                print("ยังไม่ได้หยิบยาเน้อ")
+                                playSound()
                                 pill_channel_btn.setStyleSheet("background-color : #F8F37D")
                                 channel_text = "ช่องที่ " + str(index + 1) + " \n" + pill_channel_data["name"] + " \n" + str(pill_channel_data["pillsPerTime"]) + " เม็ด"
                                 pill_channel_btn.setText(channel_text)
                             else :
                                 pill_channel_btn.setStyleSheet("background-color : #FBFADD")
                                 pill_channel_btn.setText("")
+                                stopSound()
                         else :
                             haveItemFlag = False
                             for item in __main__.haveToTake :
@@ -255,7 +280,7 @@ class HomeScreen(QDialog):
                     # If don't have data in that slot
                     pill_channel_btn.setStyleSheet("background-color : #97C7F9")
                     pill_channel_btn.setIcon(QtGui.QIcon('shared\images\plus_icon.png'))
-                    pill_channel_btn.setIconSize(QtCore.QSize(40, 40))
+                    pill_channel_btn.setIconSize(QtCore.QSize(60, 60))
 
     def checkTakePillThread(self, pill_channel_buttons, pill_channel_datas):
         # Step 2: Create a QThread object
