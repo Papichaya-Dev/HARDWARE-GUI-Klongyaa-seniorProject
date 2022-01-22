@@ -15,6 +15,7 @@ from pygame import mixer
 
 
 isChangePage = False
+isSoundOn = False
 mixer.init()
 sound_notification = mixer.Sound("screen\homeScreen\sound_notification.wav")
 print(sound_notification)
@@ -121,6 +122,7 @@ class HomeScreen(QDialog):
     def gotoPillDetailScreen(self, channelID, pill_channel_data):
         global isChangePage
         isChangePage = True
+        stopSound()
 
         if len(pill_channel_data) != 0 :
             pillThatHaveToTakeFlag = 0
@@ -204,8 +206,11 @@ class HomeScreen(QDialog):
                             # If user are not already take that pill
                             # ถ้ายังไม่ได้หยิบยา
                             if not alreadyTakeFlag :
-                                print("ยังไม่ได้หยิบยาเน้อ")
-                                playSound()
+                                global isSoundOn
+                                if not isSoundOn :
+                                    playSound()
+                                    isSoundOn = True
+
                                 pill_channel_btn.setStyleSheet("background-color : #F8F37D")
                                 channel_text = "ช่องที่ " + str(index + 1) + " \n" + pill_channel_data["name"] + " \n" + str(pill_channel_data["pillsPerTime"]) + " เม็ด"
                                 pill_channel_btn.setText(channel_text)
