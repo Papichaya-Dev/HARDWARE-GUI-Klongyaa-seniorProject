@@ -13,6 +13,9 @@ import threading
 import time
 from pygame import mixer
 
+from linebot import LineBotApi
+from linebot.models import TextMessage
+
 
 isChangePage = False
 isSoundOn = False
@@ -31,6 +34,18 @@ def playSound():
 
 def stopSound():
     sound_notification.stop()
+
+def sendLineMessage(pill_data, timeWillTake):
+    pill_name = pill_data['name']
+    pill_amount_pertime = pill_data['pillsPerTime']
+    inMinute = timeWillTake.split(':')[1]
+    if inMinute.startswith('0') :
+        print(inMinute)
+        inMinute = inMinute[1]
+    text = f'คุณมียา {pill_name} ต้องทาน จำนวน {pill_amount_pertime} เม็ด ในอีก {inMinute} นาที'
+    line_bot_api = LineBotApi(__main__.config['botAccessToken'])
+    line_bot_api.push_message(__main__.config['userId'], TextMessage(text=text))
+
 class HomeScreen(QDialog):
     def __init__(self, pill_channel_datas, config):
         super().__init__()
@@ -209,6 +224,7 @@ class HomeScreen(QDialog):
                                 global isSoundOn
                                 if not isSoundOn :
                                     playSound()
+                                    sendLineMessage(pill_channel_datas[str(index)], stringCompareTime)
                                     isSoundOn = True
 
                                 pill_channel_btn.setStyleSheet("background-color : #F8F37D")
