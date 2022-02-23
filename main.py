@@ -2,6 +2,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QStackedWidget
 from shared.data.mock.pill_channel_datas import pill_channel_datas
+from shared.data.light_list import lightList
 from shared.data.mock.config import config
 import speech_recognition as sr
 from screen.pillSummaryScreen.main_pillSummaryScreen import PillSummaryScreen

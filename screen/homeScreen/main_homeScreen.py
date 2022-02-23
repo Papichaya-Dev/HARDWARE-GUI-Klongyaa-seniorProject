@@ -16,6 +16,7 @@ from pygame import mixer
 from linebot import LineBotApi
 from linebot.models import TextMessage
 
+from screen.homeScreen.ldr import getFirstLightValue, pickPillDetection
 
 isChangePage = False
 isSoundOn = False
@@ -137,7 +138,6 @@ class HomeScreen(QDialog):
     def gotoPillDetailScreen(self, channelID, pill_channel_data):
         global isChangePage
         isChangePage = True
-        stopSound()
 
         if len(pill_channel_data) != 0 :
             pillThatHaveToTakeFlag = 0
@@ -146,7 +146,6 @@ class HomeScreen(QDialog):
             for index, item in enumerate(__main__.haveToTake) :
                 if item["id"] == channelID :
                     pillThatHaveToTakeFlag = 1
-                    __main__.haveToTake[index]["isTaken"] = True
 
                 if item["isTaken"] == False :
                     takeEveryPillFlag = 1
@@ -173,8 +172,25 @@ class HomeScreen(QDialog):
                 voiceInputScreen = InputPillNameScreen(pillData)
                 __main__.widget.addWidget(voiceInputScreen)
                 __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
+    
+    def ledLightFunction(self, index) :
+        light = __main__.lightList[str(index)]
+        if light["ledPin"] != -1:
+            if light["firstLightValue"] == -1:
+                value = getFirstLightValue(light["firstLightValue"])
+                __main__.lightList[str(index)]["firstLightValue"] = value
 
+            firstLightValue = __main__.lightList[str(index)]["firstLightValue"]
+            resistorPin = __main__.lightList[str(index)]["resistorPin"]
+            ledPin = __main__.lightList[str(index)]["ledPin"]
+            isLightOn = pickPillDetection(firstLightValue, resistorPin, ledPin)
 
+            if not isLightOn :
+                stopSound()
+                __main__.lightList[str(index)]["firstLightValue"] = -1
+                for index, item in enumerate(__main__.haveToTake) :
+                    if item["id"] == index :
+                        __main__.haveToTake[index]["isTaken"] = True
 
     def checkTakePill(self, n, pill_channel_buttons, pill_channel_datas) :
         for index in range(7) :
@@ -221,6 +237,8 @@ class HomeScreen(QDialog):
                             # If user are not already take that pill
                             # ถ้ายังไม่ได้หยิบยา
                             if not alreadyTakeFlag :
+                                self.ledLightFunction(index)
+
                                 global isSoundOn
                                 if not isSoundOn :
                                     playSound()
