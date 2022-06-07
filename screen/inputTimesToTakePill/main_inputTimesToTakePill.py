@@ -77,7 +77,7 @@ class InputTimeToTakePillScreen(QDialog):
 
         background_input_times_to_take_pill.setWindowTitle(_translate("background_input_times_to_take_pill", "Dialog"))
         self.no_channel.setText(_translate("background_input_times_to_take_pill", channelID))
-        self.question_input_times_to_take_pill.setText(_translate("background_input_times_to_take_pill", "ดำเนินการกดปุ่ม \n"" เพื่อพูดเวลาทานยาพาราเซตามอล"))
+        self.question_input_times_to_take_pill.setText(_translate("background_input_times_to_take_pill", "ดำเนินการกดปุ่ม \n"" เพื่อพูดเวลาทานยา"))
 
     import screen.inputPillNameScreen.gen.mic_icon
 
@@ -259,8 +259,10 @@ class AddSummaryTimeScreen(QDialog):
             self.gridLayout.addWidget(timeToTakePillData, 9+objIndex, 1, 1, 1)
 
             timeToTakePillEditButton = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
-            timeToTakePillEditButton.setMinimumSize(QtCore.QSize(70, 70))
-            timeToTakePillEditButton.setStyleSheet("font-size: 40px; background-color: rgb(255, 74, 74); border-radius: 35px; color: white;")
+            timeToTakePillEditButton.setIconSize(QtCore.QSize(68, 68))
+            timeToTakePillEditButton.setIcon(QtGui.QIcon('/home/pi/Desktop/GUI-Klongyaa_senior-project-main/shared/images/edit.png'))
+            timeToTakePillEditButton.setStyleSheet("background-color : rgb(255, 74, 74); border-radius: 35px;")
+    
             timeToTakePillEditButton.setObjectName("button_edit_time_" + str(objIndex))
             
             timeToTakePillEditButton.clicked.connect(partial(self.editTimeToTakePill, idx))

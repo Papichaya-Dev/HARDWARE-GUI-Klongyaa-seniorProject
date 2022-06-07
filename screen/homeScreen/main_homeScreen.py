@@ -8,6 +8,7 @@ from functools import partial
 from PyQt5.QtCore import QObject, QThread, pyqtSignal
 from time import sleep
 from datetime import datetime, timedelta
+import requests
 
 import threading
 import time
@@ -16,11 +17,12 @@ from pygame import mixer
 from linebot import LineBotApi
 from linebot.models import TextMessage
 
+from screen.homeScreen.ldr import getFirstLightValue, pickPillDetection
 
 isChangePage = False
 isSoundOn = False
 mixer.init()
-sound_notification = mixer.Sound("screen\homeScreen\sound_notification.wav")
+sound_notification = mixer.Sound("/home/pi/Desktop/GUI-Klongyaa_senior-project-main/screen/homeScreen/sound_notification.wav")
 print(sound_notification)
  #---------------- Function play sound notification ----------------#
 def releaseCooldown():
@@ -34,17 +36,57 @@ def playSound():
 
 def stopSound():
     sound_notification.stop()
+    
+def checkIsTaken(id):
+    if len(__main__.haveToTake) == 0 : return "no data"
+    
+    for item in __main__.haveToTake:
+        if item["id"] == id and item["isTaken"] == False :
+            return "not take"
+        elif item["id"] == id and item["isTaken"] == True :
+            return "is taken"
+    return "no data"
+
+def checkIsSendLateMessage(id):
+    if len(__main__.haveToTake) == 0 : return "no data"
+    
+    for item in __main__.haveToTake:
+        if item["id"] == id and item["isLateMessageSended"] == False :
+            return "not send"
+        elif item["id"] == id and item["isLateMessageSended"] == True :
+            return "already send"
+    return "no data"
+    
+def sendLateMessage(pill_data, timeWillTake):
+    pill_name = pill_data['name']
+    pill_amount_pertime = pill_data['pillsPerTime']
+    text = f'ผู้สูงอายุลืมทานยา {pill_name} จำนวน {pill_amount_pertime} เม็ด เวลา {timeWillTake}'
+    line_bot_api = LineBotApi(__main__.config['botAccessToken'])
+    line_bot_api.push_message(__main__.config['userId'], TextMessage(text=text))
+    res = requests.post(__main__.config["url"] + "/pill-data/addLogHistory", json={
+            "channel_id": str(pill_data["id"]+1),
+            "line_uid": __main__.config["userId"],
+            "task": "Forgot to take pill"
+            })
+    print('Forgot to take pill')
 
 def sendLineMessage(pill_data, timeWillTake):
+    print(timeWillTake)
     pill_name = pill_data['name']
     pill_amount_pertime = pill_data['pillsPerTime']
     inMinute = timeWillTake.split(':')[1]
     if inMinute.startswith('0') :
         print(inMinute)
         inMinute = inMinute[1]
-    text = f'คุณมียา {pill_name} ต้องทาน จำนวน {pill_amount_pertime} เม็ด ในอีก {inMinute} นาที'
+    text = f'ผู้สูงอายุมียา {pill_name} ต้องทาน จำนวน {pill_amount_pertime} เม็ด ในอีก {inMinute} นาที'
     line_bot_api = LineBotApi(__main__.config['botAccessToken'])
     line_bot_api.push_message(__main__.config['userId'], TextMessage(text=text))
+    res = requests.post(__main__.config["url"] + "/pill-data/addLogHistory", json={
+            "channel_id": str(pill_data["id"]+1),
+            "line_uid": __main__.config["userId"],
+            "task": "Take pill remider"
+            })
+    print('Take pill remider')
 
 class HomeScreen(QDialog):
     def __init__(self, pill_channel_datas, config):
@@ -98,7 +140,7 @@ class HomeScreen(QDialog):
             else :
                 # If don't have data in that slot
                 pill_channel_btn.setStyleSheet("background-color : #97C7F9 ")
-                pill_channel_btn.setIcon(QtGui.QIcon('shared\images\plus_icon.png'))
+                pill_channel_btn.setIcon(QtGui.QIcon('/home/pi/Desktop/GUI-Klongyaa_senior-project-main/shared/images/plus_icon.png'))
                 pill_channel_btn.setIconSize(QtCore.QSize(60, 60))
 
             pill_channel_buttons.append(pill_channel_btn)
@@ -137,7 +179,6 @@ class HomeScreen(QDialog):
     def gotoPillDetailScreen(self, channelID, pill_channel_data):
         global isChangePage
         isChangePage = True
-        stopSound()
 
         if len(pill_channel_data) != 0 :
             pillThatHaveToTakeFlag = 0
@@ -146,7 +187,6 @@ class HomeScreen(QDialog):
             for index, item in enumerate(__main__.haveToTake) :
                 if item["id"] == channelID :
                     pillThatHaveToTakeFlag = 1
-                    __main__.haveToTake[index]["isTaken"] = True
 
                 if item["isTaken"] == False :
                     takeEveryPillFlag = 1
@@ -173,8 +213,38 @@ class HomeScreen(QDialog):
                 voiceInputScreen = InputPillNameScreen(pillData)
                 __main__.widget.addWidget(voiceInputScreen)
                 __main__.widget.setCurrentIndex(__main__.widget.currentIndex() + 1)
+    
+    def ledLightFunction(self, index) :
+        alreadyTake = False
+        for no, item in enumerate(__main__.haveToTake) :
+            if item["id"] == no and item["isTaken"]:
+                alreadyTake = True
+                
+        light = __main__.lightList[str(index)]
+        if light["ledPin"] != -1 and not alreadyTake:
+            if light["firstLightValue"] == -1:
+                value = getFirstLightValue(light["resistorPin"])
+                __main__.lightList[str(index)]["firstLightValue"] = value
 
+            firstLightValue = __main__.lightList[str(index)]["firstLightValue"]
+            resistorPin = __main__.lightList[str(index)]["resistorPin"]
+            ledPin = __main__.lightList[str(index)]["ledPin"]
+            led = __main__.lightList[str(index)]["led"]
+            isLightOn = pickPillDetection(firstLightValue, resistorPin, ledPin, led)
 
+            if not isLightOn :
+                stopSound()
+                __main__.lightList[str(index)]["firstLightValue"] = -1
+                print("hahahaha")
+                for no, item in enumerate(__main__.haveToTake) :
+                    if item["id"] == index :
+                        __main__.haveToTake[no]["isTaken"] = True
+                        res = requests.post(__main__.config["url"] + "/pill-data/addLogHistory", json={
+                                "channel_id": str(item["id"]+1),
+                                "line_uid": __main__.config["userId"],
+                                "task": "Take pill"
+                                })
+                        print('Take pill')
 
     def checkTakePill(self, n, pill_channel_buttons, pill_channel_datas) :
         for index in range(7) :
@@ -198,7 +268,7 @@ class HomeScreen(QDialog):
                     if not stringCompareTime.startswith('-1') :
                         willTakeMinute = int(stringCompareTime.split(':')[1])
                         willTakeHour = int(stringCompareTime.split(':')[0])
-
+                        
                         # if time to take is in 10 minute or less that 10 minute
                         if willTakeMinute <= 10 and willTakeMinute >= 0 and willTakeHour == 0 :
                             alreadyTakeFlag = False
@@ -214,16 +284,20 @@ class HomeScreen(QDialog):
                                 takeTimeData = {
                                     "id": index,
                                     "time": time,
-                                    "isTaken": False
+                                    "isTaken": False,
+                                    "isLateMessageSended": False,
                                 }
                                 __main__.haveToTake.append(takeTimeData)
 
                             # If user are not already take that pill
                             # ถ้ายังไม่ได้หยิบยา
                             if not alreadyTakeFlag :
+                                self.ledLightFunction(index)
+
                                 global isSoundOn
                                 if not isSoundOn :
                                     playSound()
+                                    print(pill_channel_datas[str(index)])
                                     sendLineMessage(pill_channel_datas[str(index)], stringCompareTime)
                                     isSoundOn = True
 
@@ -233,7 +307,7 @@ class HomeScreen(QDialog):
                             else :
                                 pill_channel_btn.setStyleSheet("background-color : #FBFADD")
                                 pill_channel_btn.setText("")
-                                stopSound()
+                                stopSound()                            
                         else :
                             haveItemFlag = False
                             for item in __main__.haveToTake :
@@ -242,7 +316,17 @@ class HomeScreen(QDialog):
                             if not haveItemFlag :
                                 pill_channel_btn.setStyleSheet("background-color : #FBFADD")
                                 pill_channel_btn.setText("")
+                                
+                        
                     else :
+                        if checkIsTaken(index) == "not take" and checkIsSendLateMessage(index) == "not send":
+                            print("not pickkkkk")
+                        
+                            sendLateMessage(pill_channel_datas[str(index)], time)                   
+                            for no, item in enumerate(__main__.haveToTake):
+                                if item["id"] == index :
+                                    __main__.haveToTake[no]["isLateMessageSended"] = True
+                                    
                         # check that it have item in haveToTake pill list that not taken
                         flag = 0
                         for item in __main__.haveToTake :
@@ -253,21 +337,15 @@ class HomeScreen(QDialog):
                             for item in __main__.haveToTake :
                                 if item["id"] == index :
                                     __main__.haveToTake.remove(item)
-
-                        data = {
-                            "id": index,
-                            "time": time,
-                            "isTaken": True
-                        }
-
-                        # If time to take is already pass and you already take pill remove that data from haveToTake list
-                        if data in __main__.haveToTake:
-                            __main__.haveToTake.remove(data)
-
+                                    
+                        #  If time to take is already pass and you already take pill remove that data from haveToTake list
+                        for no, item in enumerate(__main__.haveToTake):
+                            if item["id"] == index :
+                                del __main__.haveToTake[no]
 
                         pill_channel_btn.setStyleSheet("background-color : #FBFADD")
                         pill_channel_btn.setText("")
-
+                        
         flag = 0
         for item in __main__.haveToTake :
             if item["isTaken"] == False:
@@ -300,7 +378,7 @@ class HomeScreen(QDialog):
                 else :
                     # If don't have data in that slot
                     pill_channel_btn.setStyleSheet("background-color : #97C7F9")
-                    pill_channel_btn.setIcon(QtGui.QIcon('shared\images\plus_icon.png'))
+                    pill_channel_btn.setIcon(QtGui.QIcon('/home/pi/Desktop/GUI-Klongyaa_senior-project-main/shared/images/plus_icon.png'))
                     pill_channel_btn.setIconSize(QtCore.QSize(60, 60))
 
     def checkTakePillThread(self, pill_channel_buttons, pill_channel_datas):

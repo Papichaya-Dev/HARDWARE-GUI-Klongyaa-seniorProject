@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import __main__
+import requests
 
 class DetailScreen(QtWidgets.QDialog):
     def __init__(self, pill_channel_data):
@@ -291,21 +292,13 @@ class DetailScreen(QtWidgets.QDialog):
 "")
         self.no_channel.setAlignment(QtCore.Qt.AlignCenter)
         self.no_channel.setObjectName("no_channel")
-        self.button_edit_pill_data = QtWidgets.QToolButton(background_detail_screen)
+        self.button_edit_pill_data = QtWidgets.QPushButton(background_detail_screen)
         self.button_edit_pill_data.setGeometry(QtCore.QRect(920, 30, 75, 75))
-        self.button_edit_pill_data.setMinimumSize(QtCore.QSize(70, 70))
-        self.button_edit_pill_data.setStyleSheet("QToolButton#button_edit_pill_data  {\n"
-"   font-size: 40px;\n"
-"  background-color: rgb(255, 74, 74);\n"
-"  border-radius: 35px;\n"
-"  color: white;\n"
-"}\n"
-"QToolButton#button_edit_pill_data :hover {\n"
-" font-size: 40px;\n"
-"  background-color: rgb(255, 50, 50);\n"
-"  border-radius:35px;\n"
-"  color: white;\n"
-"}")
+        self.button_edit_pill_data.setIconSize(QtCore.QSize(68, 68))
+        self.button_edit_pill_data.setIcon(QtGui.QIcon('/home/pi/Desktop/GUI-Klongyaa_senior-project-main/shared/images/edit.png'))
+        self.button_edit_pill_data.setStyleSheet("background-color : #97C7F9; border-radius: 10px;")
+
+      
         self.button_edit_pill_data.setObjectName("button_edit_pill_data")
         self.button_edit_pill_data.clicked.connect(self.goToEditPage)
 
@@ -335,6 +328,12 @@ class DetailScreen(QtWidgets.QDialog):
 
     def deletePillData(self):
         id = self.pill_channel_data["id"]
+        res = requests.post(__main__.config["url"] + "/pill-data/deletePillChannelData/", json={
+            "channelID": str(self.pill_channel_data["id"] + 1),
+            "lineUID": __main__.config["userId"]
+            })
+        
+        print('from delete pill data in main_detail_screen.py')
         __main__.pill_channel_datas[str(id)] = {}
         __main__.widget.removeWidget(self)
         __main__.widget.addWidget(__main__.HomeScreen(__main__.pill_channel_datas, __main__.config))

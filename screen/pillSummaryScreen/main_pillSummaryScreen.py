@@ -102,8 +102,9 @@ class PillSummaryScreen(QDialog):
         self.gridLayout_2.addWidget(self.show_pill_name, currentRow, 1, 1, 1)
 
         self.button_edit_pill_name = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
-        self.button_edit_pill_name.setMinimumSize(QtCore.QSize(70, 70))
-        self.button_edit_pill_name.setStyleSheet("QToolButton#button_edit_pill_name  {\n" "   font-size: 40px;\n" "  background-color: rgb(255, 74, 74);\n" "  border-radius: 35px;\n" "  color: white;\n" "}\n" "QToolButton#button_edit_pill_name :hover {\n" " font-size: 40px;\n" "  background-color: rgb(255, 50, 50);\n" "  border-radius:35px;\n" "  color: white;\n" "}")
+        self.button_edit_pill_name.setIconSize(QtCore.QSize(68, 68))
+        self.button_edit_pill_name.setIcon(QtGui.QIcon('/home/pi/Desktop/GUI-Klongyaa_senior-project-main/shared/images/edit.png'))
+        self.button_edit_pill_name.setStyleSheet("background-color : rgb(255, 74, 74); border-radius: 35px;")
         self.button_edit_pill_name.setObjectName("button_edit_pill_name")
         self.gridLayout_2.addWidget(self.button_edit_pill_name, currentRow, 3, 1, 1)
 
@@ -137,8 +138,10 @@ class PillSummaryScreen(QDialog):
                 self.gridLayout_2.addWidget(self.show_total_pills, currentRow, 1, 1, 1)
 
                 self.button_edit_total_pills = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
-                self.button_edit_total_pills.setMinimumSize(QtCore.QSize(70, 70))
-                self.button_edit_total_pills.setStyleSheet("QToolButton#button_edit_total_pills {\n" "   font-size: 40px;\n" "  background-color: rgb(255, 74, 74);\n" "  border-radius: 35px;\n" "  color: white;\n" "}\n" "QToolButton#button_edit_total_pills:hover {\n" "    font-size: 40px;\n" "  background-color: rgb(255, 50, 50);\n" "  border-radius: 35px;\n" "  color: white;\n" "}")
+                self.button_edit_total_pills.setIconSize(QtCore.QSize(68, 68))
+                self.button_edit_total_pills.setIcon(QtGui.QIcon('/home/pi/Desktop/GUI-Klongyaa_senior-project-main/shared/images/edit.png'))
+                self.button_edit_total_pills.setStyleSheet("background-color : rgb(255, 74, 74); border-radius: 35px;")
+
                 self.button_edit_total_pills.setText("🖉")
                 self.button_edit_total_pills.setObjectName("button_edit_total_pills")
                 self.gridLayout_2.addWidget(self.button_edit_total_pills, currentRow, 3, 1, 1)
@@ -165,16 +168,20 @@ class PillSummaryScreen(QDialog):
         self.gridLayout_2.addWidget(self.show_amount_pill, currentRow, 1, 1, 1)
 
         self.button_edit_amount_pill = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
-        self.button_edit_amount_pill.setMinimumSize(QtCore.QSize(70, 70))
-        self.button_edit_amount_pill.setStyleSheet("QToolButton#button_edit_amount_pill {\n" "   font-size: 40px;\n" "  background-color: rgb(255, 74, 74);\n" "  border-radius: 35px;\n" "  color: white;\n" "}\n" "QToolButton#button_edit_amount_pill {\n" "    font-size: 40px;\n" "  background-color: rgb(255, 50, 50);\n" "  border-radius: 35px;\n" "  color: white;\n" "}")
+        self.button_edit_amount_pill.setIconSize(QtCore.QSize(68, 68))
+        self.button_edit_amount_pill.setIcon(QtGui.QIcon('/home/pi/Desktop/GUI-Klongyaa_senior-project-main/shared/images/edit.png'))
+        self.button_edit_amount_pill.setStyleSheet("background-color : rgb(255, 74, 74); border-radius: 35px;")
+
         self.button_edit_amount_pill.setObjectName("button_edit_amount_pill")
         self.gridLayout_2.addWidget(self.button_edit_amount_pill, currentRow, 3, 1, 1)
 
         currentRow = currentRow + 1
 
         self.button_edit_time = QtWidgets.QToolButton(self.scrollAreaWidgetContents)
-        self.button_edit_time.setMinimumSize(QtCore.QSize(70, 70))
-        self.button_edit_time.setStyleSheet("QToolButton#button_edit_time {\n" "   font-size: 40px;\n" "  background-color: rgb(255, 74, 74);\n" "  border-radius: 35px;\n" "  color: white;\n" "}\n" "QToolButton#button_edit_time {\n" "    font-size: 40px;\n" "  background-color: rgb(255, 50, 50);\n" "  border-radius: 35px;\n" "  color: white;\n" "}")
+        self.button_edit_time.setIconSize(QtCore.QSize(68, 68))
+        self.button_edit_time.setIcon(QtGui.QIcon('/home/pi/Desktop/GUI-Klongyaa_senior-project-main/shared/images/edit.png'))
+        self.button_edit_time.setStyleSheet("background-color : rgb(255, 74, 74); border-radius: 35px;")
+
         self.button_edit_time.setObjectName("button_edit_time")
         self.gridLayout_2.addWidget(self.button_edit_time, currentRow, 3, 1, 1)
 
